@@ -24,6 +24,8 @@ Após clonar o repositorio entrar na pasta dotfiles
 
 `stow tmux`
 
+`stow zshrc`
+
 
 
 ## Tmux
@@ -37,4 +39,19 @@ Após clonar o repositorio entrar na pasta dotfiles
 ### Para instalar os plugin
 
 Press prefix + I (capital i, as in Install) to fetch the plugin.
+
+
+## zshrc
+
+`brew install fzf`
+
+`brew install zsh-autosuggestions`
+
+`brew install zsh-syntax-highlighting`
+
+`brew install eza`
+
+`brew install zoxide`
+
+
 
