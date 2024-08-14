@@ -30,7 +30,7 @@ Após clonar o repositorio entrar na pasta dotfiles
 
 `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 
-# type this in terminal if tmux is already running
+#type this in terminal if tmux is already running
 `tmux source ~/.tmux.conf`
 
 ### Para instalar os plugin
