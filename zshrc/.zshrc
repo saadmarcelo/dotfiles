@@ -86,3 +86,4 @@ _fzf_comprun() {
     *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
   esac
 }
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
