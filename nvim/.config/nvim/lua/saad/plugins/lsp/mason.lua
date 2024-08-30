@@ -44,6 +44,7 @@ return {
 				"tflint",
 				"taplo",
 				"yamlls",
+				"grammarly",
 			},
 		})
 		mason_tool_installer.setup({
@@ -54,6 +55,7 @@ return {
 				"black", -- python formatter
 				"pylint", -- python linter
 				"eslint_d", -- js linter
+				"docformatter",
 			},
 		})
 	end,
