@@ -47,7 +47,6 @@ return {
 				"terraform",
 				"vimdoc",
 				"c",
-				"help",
 			},
 			incremental_selection = {
 				enable = true,
