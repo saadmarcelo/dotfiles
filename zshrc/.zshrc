@@ -31,7 +31,6 @@ setopt hist_ignore_dups
 setopt hist_verify
 
 
-
 ##### Alias
 alias vim=nvim
 alias v=vim 
