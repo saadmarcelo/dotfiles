@@ -58,7 +58,7 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 
 
-## Ubuntu
+# Ubuntu
 
 ## zshrc
 
@@ -70,6 +70,7 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 `source ~/.zshrc`
 
+
 ## Install oh my zsh
 
 `sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"`
@@ -79,6 +80,10 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting`
 
 
+
+## Install zoxide 
+
+`sudo apt install zoxide`
 
 
 
