@@ -57,3 +57,28 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 
 
+
+## Ubuntu
+
+## zshrc
+
+`sudo apt install zsh -y`
+
+`chsh -s $(which zsh)`
+
+`zsh`
+
+`source ~/.zshrc`
+
+## Install oh my zsh
+
+`sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"`
+
+`git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions`
+
+`git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting`
+
+
+
+
+
