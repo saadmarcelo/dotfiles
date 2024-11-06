@@ -23,7 +23,10 @@ return {
 						["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
 						["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
 						["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+						["https://json.schemastore.org/ansible-playbook"] = "*/roles/*.{yml,yaml}",
 					},
+					validate = true,
+					completion = true,
 				},
 			},
 		})
