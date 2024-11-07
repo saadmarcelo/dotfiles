@@ -39,6 +39,7 @@ return {
 				"helm_ls",
 				"jsonls",
 				"sqlls",
+				"ruff",
 				"terraformls",
 				"tflint",
 				"eslint",
