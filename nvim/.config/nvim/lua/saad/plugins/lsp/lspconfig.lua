@@ -6,6 +6,14 @@ return {
 		"hrsh7th/nvim-cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
+		dependencies = {
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("luasnip.loaders.from_vscode").lazy_load()
+				end,
+			},
+		},
 	},
 	config = function()
 		-- import lspconfig plugin
