@@ -13,7 +13,8 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- delete single character without copying into register
--- keymap.set("n", "x", '"_x')
+keymap.set("n", "x", '"_x')
+
 -- center line on C-d
 keymap.set("n", "<C-d>", "<C-d>zz", { desc = "center the cursor" })
 keymap.set("n", "<C-u>", "<C-u>zz", { desc = "center the cursor" })
