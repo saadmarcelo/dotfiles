@@ -37,3 +37,5 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 keymap.set("v", "<", "<gv", { desc = "Ident left" })
 keymap.set("v", ">", ">gv", { desc = "Ident right" })
 
+-- Keep last yanked when pasting
+keymap.set("v", "p", '"_dP', { desc = "keep de last yanked when pasting" })
