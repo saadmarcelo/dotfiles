@@ -44,6 +44,7 @@ return {
 				"tflint",
 				"eslint",
 				"taplo",
+				"hydra_lsp",
 				"yamlls",
 				"grammarly",
 			},
