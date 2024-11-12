@@ -1,18 +1,18 @@
 # dotfiles
-arquivos de config 
 
-instalar o app stow 
+arquivos de config
 
-## linux 
+instalar o app stow
+
+## linux
 
 `apt install stow`
 
-
 ## MacOS
 
-`brew install stow` 
+`brew install stow`
 
-
+`brew install kitty`
 
 Após clonar o repositorio entrar na pasta dotfiles
 
@@ -26,7 +26,7 @@ Após clonar o repositorio entrar na pasta dotfiles
 
 `stow zshrc`
 
-
+`stow kitty`
 
 ## Tmux
 
@@ -39,7 +39,6 @@ Após clonar o repositorio entrar na pasta dotfiles
 ### Para instalar os plugin
 
 Press prefix + I (capital i, as in Install) to fetch the plugin.
-
 
 ## zshrc
 
@@ -55,9 +54,6 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 `brew install lazygit`
 
-
-
-
 # Ubuntu
 
 ## zshrc
@@ -70,7 +66,6 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 `source ~/.zshrc`
 
-
 ## Install oh my zsh
 
 `sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"`
@@ -79,11 +74,6 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting`
 
-
-
-## Install zoxide 
+## Install zoxide
 
 `sudo apt install zoxide`
-
-
-
