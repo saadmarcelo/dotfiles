@@ -18,6 +18,17 @@ return {
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
+
+		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local capabilities = cmp_nvim_lsp.default_capabilities()
+		-- ansible
+		lspconfig.ansiblels.setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = { "yaml", "yml", "ansible" },
+			root_dir = lspconfig.util.root_pattern("roles", "playbooks"),
+		})
+
 		-- Configuração para o LSP de YAML
 		lspconfig.yamlls.setup({
 			settings = {
