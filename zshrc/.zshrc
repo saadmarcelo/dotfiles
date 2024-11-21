@@ -38,6 +38,7 @@ alias vim=nvim
 alias v=vim 
 alias vi=v
 alias cat=bat
+alias batcat=bat
 
 # History Search
 autoload -Uz history-search-end
