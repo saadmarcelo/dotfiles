@@ -25,16 +25,22 @@ return {
 		lspconfig.ansiblels.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
-			filetypes = { "yaml", "yml", "ansible" },
+			filetypes = { "yaml.ansible" },
 			root_dir = lspconfig.util.root_pattern("roles", "playbooks"),
 		})
 
 		-- Configuração para o LSP de YAML
 		lspconfig.yamlls.setup({
+			capabilities = capabilities,
+			filetypes = { "yaml", "yaml.kubernetes" },
 			settings = {
 				yaml = {
 					schemas = {
-						kubernetes = "k8s-*.yaml",
+						["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1-standalone-strict/all.json"] = {
+							"*.k8s.yaml",
+							"k8s-*.yaml",
+							"/*.yaml",
+						},
 						["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
 						["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
 						["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
