@@ -93,3 +93,11 @@ source <(kubectl completion zsh)
 export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Ativar o kube-ps1
+source ~/.kube-ps1/kube-ps1.sh
+PROMPT='$(kube_ps1)'$PROMPT
+KUBE_PS1_PREFIX="("            # Adiciona um prefixo antes do contexto
+KUBE_PS1_SUFFIX=")"            # Adiciona um sufixo depois do contexto
+KUBE_PS1_SYMBOL_USE_IMG=true   # Usa um ícone para o cluster
+
