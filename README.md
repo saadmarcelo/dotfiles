@@ -54,7 +54,8 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 
 `brew install lazygit`
 
-Git que indicar qual contexto esta executando kubernete
+Git que indicar qual contexto esta executando kubernetes
+
 `git clone https://github.com/jonmosco/kube-ps1.git ~/.kube-ps1`
 
 # Ubuntu
