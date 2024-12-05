@@ -22,6 +22,9 @@ keymap.set("n", "<C-u>", "<C-u>zz", { desc = "center the cursor" })
 -- Dismiss Noice Message
 vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
 
+-- View Noice message
+vim.keymap.set("n", "<leader>nm", ":Noice<CR>", { desc = "View noice messages" })
+
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement

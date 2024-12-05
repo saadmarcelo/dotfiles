@@ -12,6 +12,9 @@ return {
 				border = {
 					style = "rounded",
 				},
+				messages = {
+					enable = true,
+				},
 			},
 		},
 		lsp = {
