@@ -45,7 +45,6 @@ return {
 				"eslint",
 				"taplo",
 				"yamlls",
-				"grammarly",
 			},
 		})
 		mason_tool_installer.setup({
