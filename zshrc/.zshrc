@@ -1,7 +1,7 @@
 export PATH=/Users/marcelosaad/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/marcelosaad/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="fino"
 plugins=(
@@ -10,10 +10,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Export nvim default editor 
 export EDITOR=nvim
@@ -39,6 +35,7 @@ alias v=vim
 alias vi=v
 alias cat=bat
 alias batcat=bat
+alias k=kubectl
 
 # History Search
 autoload -Uz history-search-end
