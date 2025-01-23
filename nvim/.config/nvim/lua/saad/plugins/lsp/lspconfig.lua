@@ -21,12 +21,38 @@ return {
 
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 		local capabilities = cmp_nvim_lsp.default_capabilities()
+
+		-- Ensure Terraform files are recognized
+		vim.filetype.add({
+			extension = {
+				tf = "terraform",
+			},
+		})
+
+		-- Automatically start LSP for new Terraform files
+		vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+			pattern = "*.tf",
+			callback = function()
+				vim.bo.filetype = "terraform"
+			end,
+		})
+
 		-- ansible
 		lspconfig.ansiblels.setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			filetypes = { "yaml.ansible" },
 			root_dir = lspconfig.util.root_pattern("roles", "playbooks"),
+		})
+
+		-- configuracao do terraform
+		lspconfig.terraformls.setup({
+			capabilities = capabilities,
+			filetypes = { "terraform", "tf" },
+			on_attach = function(_, bufnr)
+				local opts = { noremap = true, silent = true, buffer = bufnr }
+				vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+			end,
 		})
 
 		-- Configuração para o LSP de YAML
