@@ -38,7 +38,6 @@ return {
 				"docker_compose_language_service",
 				"helm_ls",
 				"jsonls",
-				"hclfmt",
 				"sqlls",
 				"ruff",
 				"terraformls",
