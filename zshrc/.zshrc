@@ -33,7 +33,6 @@ setopt hist_verify
 alias vim=nvim
 alias v=vim 
 alias vi=v
-alias cat=bat
 alias batcat=bat
 alias k=kubectl
 
