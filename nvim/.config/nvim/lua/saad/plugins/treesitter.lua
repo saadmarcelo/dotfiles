@@ -37,6 +37,7 @@ return {
 				"hcl",
 				"helm",
 				"toml",
+				"regex",
 				"bash",
 				"lua",
 				"python",
@@ -48,6 +49,10 @@ return {
 				"vimdoc",
 				"c",
 			},
+			auto_install = true,
+			sync_install = false,
+			ignore_install = {},
+			modules = {},
 			incremental_selection = {
 				enable = true,
 				keymaps = {
