@@ -14,6 +14,8 @@ instalar o app stow
 
 `brew install kitty`
 
+`brew install tmux`
+
 Após clonar o repositorio entrar na pasta dotfiles
 
 `stow nvim`
