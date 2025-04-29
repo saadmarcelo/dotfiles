@@ -46,7 +46,16 @@ return {
 				"yamlls",
 			},
 			automatic_installation = true,
+			handlers = {
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+			},
 		})
+
+		-- Configura manualmente o dartls
+		require("lspconfig").dartls.setup({})
+
 		mason_tool_installer.setup({
 			ensure_installed = {
 				"prettier", -- prettier formatter

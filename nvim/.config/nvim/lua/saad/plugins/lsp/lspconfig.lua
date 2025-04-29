@@ -151,6 +151,21 @@ return {
 					},
 				})
 			end,
+			["dartls"] = function()
+				lspconfig.dartls.setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					cmd = { "dart", "language-server", "--protocol=lsp" },
+					filetypes = { "dart" },
+					root_dir = lspconfig.util.root_pattern("pubspec.yaml"),
+					settings = {
+						dart = {
+							completeFunctionCalls = true,
+							showTodos = true,
+						},
+					},
+				})
+			end,
 		})
 	end,
 }
