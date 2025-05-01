@@ -53,8 +53,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
-#source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ---- Eza (better ls) -----
 
@@ -91,9 +91,9 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Ativar o kube-ps1
-# source ~/.kube-ps1/kube-ps1.sh
-# PROMPT='$(kube_ps1)'$PROMPT
-# KUBE_PS1_PREFIX="("            # Adiciona um prefixo antes do contexto
-# KUBE_PS1_SUFFIX=")"            # Adiciona um sufixo depois do contexto
-# KUBE_PS1_SYMBOL_USE_IMG=true   # Usa um ícone para o cluster
-#
+source ~/.kube-ps1/kube-ps1.sh
+PROMPT='$(kube_ps1)'$PROMPT
+KUBE_PS1_PREFIX="("            # Adiciona um prefixo antes do contexto
+KUBE_PS1_SUFFIX=")"            # Adiciona um sufixo depois do contexto
+KUBE_PS1_SYMBOL_USE_IMG=true   # Usa um ícone para o cluster
+
