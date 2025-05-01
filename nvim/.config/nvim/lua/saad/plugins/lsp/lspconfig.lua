@@ -26,21 +26,6 @@ return {
 		local on_attach = function(client, bufnr)
 			local opts = { noremap = true, silent = true, buffer = bufnr }
 
-			-- Mapeamentos básicos de LSP
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-			vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-			vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-			vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float, opts)
-
-			-- Adicionando seus keybinds personalizados
-			vim.keymap.set("n", "<leader>ld", vim.lsp.buf.type_definition, opts)
-			vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, opts)
-			vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, opts)
-			vim.keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, opts)
-			vim.keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, opts)
 			vim.keymap.set("n", "<leader>lwl", function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end, opts)
