@@ -25,6 +25,21 @@ vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noi
 -- View Noice message
 vim.keymap.set("n", "<leader>nm", ":Noice<CR>", { desc = "View noice messages" })
 
+-- Mapeamentos básicos de LSP
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "go to definition" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "go to definition" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>D", vim.diagnostic.open_float, { desc = "go to definition" })
+
+-- Adicionando seus keybinds personalizados
+vim.keymap.set("n", "<leader>ld", vim.lsp.buf.type_definition, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, { desc = "go to definition" })
+vim.keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, { desc = "go to definition" })
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
 keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
