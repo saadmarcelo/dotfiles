@@ -12,11 +12,11 @@ return {
 				require("luasnip.loaders.from_vscode").lazy_load()
 			end,
 		},
+		"williamboman/mason-lspconfig.nvim",
 	},
 	config = function()
 		-- Importações iniciais
 		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		-- Habilidades de autocompletar para todos os LSPs
@@ -31,12 +31,7 @@ return {
 			end, opts)
 		end
 
-		-- Diagnósticos personalizados
-		-- local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-		-- for type, icon in pairs(signs) do
-		-- 	local hl = "DiagnosticSign" .. type
-		-- 	-- vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		-- end
+		-- Configuração de diagnósticos
 		vim.diagnostic.config({
 			signs = {
 				text = {
@@ -47,6 +42,7 @@ return {
 				},
 			},
 		})
+
 		-- Adicionar suporte ao Terraform
 		vim.filetype.add({
 			extension = {
@@ -54,103 +50,70 @@ return {
 			},
 		})
 
-		-- LSPs específicos
-		lspconfig.ansiblels.setup({
-			capabilities = capabilities,
-			on_attach = on_attach,
-			filetypes = { "yaml.ansible" },
-			root_dir = lspconfig.util.root_pattern("roles", "playbooks"),
-		})
-
-		lspconfig.terraformls.setup({
-			capabilities = capabilities,
-			filetypes = { "terraform", "tf" },
-			on_attach = on_attach,
-		})
-
-		lspconfig.yamlls.setup({
-			capabilities = capabilities,
-			filetypes = { "yaml", "yaml.kubernetes" },
-			settings = {
-				yaml = {
-					schemas = {
-						["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1-standalone-strict/all.json"] = {
-							"*.k8s.yaml",
-							"k8s-*.yaml",
-							"/*.yaml",
+		-- Configurações específicas para cada LSP
+		local servers = {
+			ansiblels = {
+				filetypes = { "yaml.ansible" },
+				root_dir = lspconfig.util.root_pattern("roles", "playbooks"),
+			},
+			terraformls = {
+				filetypes = { "terraform", "tf" },
+			},
+			yamlls = {
+				filetypes = { "yaml", "yaml.kubernetes" },
+				settings = {
+					yaml = {
+						schemas = {
+							["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1-standalone-strict/all.json"] = {
+								"*.k8s.yaml",
+								"k8s-*.yaml",
+								"/*.yaml",
+							},
+							["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+							["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+							["http://json.schemastore.org/ansible-playbook"] = "playbooks/**/*.{yml,yaml}",
+							["http://json.schemastore.org/ansible-stable-2.9"] = "roles/**/*.{yml,yaml}",
+							["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+							["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+							["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+							["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
 						},
-						["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-						["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-						["http://json.schemastore.org/ansible-playbook"] = "playbooks/**/*.{yml,yaml}",
-						["http://json.schemastore.org/ansible-stable-2.9"] = "roles/**/*.{yml,yaml}",
-						["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-						["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-						["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-						["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+						validate = true,
+						completion = true,
 					},
-					validate = true,
-					completion = true,
 				},
 			},
-		})
+			lua_ls = {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+					},
+				},
+			},
+			dartls = {
+				cmd = { "dart", "language-server", "--protocol=lsp" },
+				filetypes = { "dart" },
+				root_dir = lspconfig.util.root_pattern("pubspec.yaml"),
+				settings = {
+					dart = {
+						completeFunctionCalls = true,
+						showTodos = true,
+					},
+				},
+			},
+		}
 
-		-- Configurações para outros LSPs
-		mason_lspconfig.setup_handlers({
-			-- Configuração padrão para todos os LSPs
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-				})
-			end,
-			-- Configuração para Svelte
-			["svelte"] = function()
-				lspconfig.svelte.setup({
-					capabilities = capabilities,
-					on_attach = function(client, bufnr)
-						on_attach(client, bufnr)
-						vim.api.nvim_create_autocmd("BufWritePost", {
-							pattern = { "*.js", "*.ts", "*.yaml", "*.yml" },
-							callback = function(ctx)
-								if client.supports_method("$/onDidChangeTsOrJsFile") then
-									client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-								end
-							end,
-						})
-					end,
-				})
-			end,
-			-- Configuração para Lua
-			["lua_ls"] = function()
-				lspconfig.lua_ls.setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-			["dartls"] = function()
-				lspconfig.dartls.setup({
-					capabilities = capabilities,
-					on_attach = on_attach,
-					cmd = { "dart", "language-server", "--protocol=lsp" },
-					filetypes = { "dart" },
-					root_dir = lspconfig.util.root_pattern("pubspec.yaml"),
-					settings = {
-						dart = {
-							completeFunctionCalls = true,
-							showTodos = true,
-						},
-					},
-				})
-			end,
-		})
+		-- Configuração padrão para todos os LSPs
+		for server, config in pairs(servers) do
+			lspconfig[server].setup(vim.tbl_extend("keep", {
+				capabilities = capabilities,
+				on_attach = on_attach,
+			}, config))
+		end
 	end,
 }
