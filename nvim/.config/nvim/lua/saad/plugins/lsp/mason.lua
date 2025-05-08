@@ -3,7 +3,6 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"neovim/nvim-lspconfig",
 	},
 	config = function()
 		-- import mason
@@ -46,15 +45,7 @@ return {
 				"yamlls",
 			},
 			automatic_installation = true,
-			handlers = {
-				function(server_name)
-					require("lspconfig")[server_name].setup({})
-				end,
-			},
 		})
-
-		-- Configura manualmente o dartls
-		require("lspconfig").dartls.setup({})
 
 		mason_tool_installer.setup({
 			ensure_installed = {
