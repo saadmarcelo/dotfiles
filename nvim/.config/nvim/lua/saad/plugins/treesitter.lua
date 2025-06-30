@@ -13,6 +13,7 @@ return {
 		treesitter.setup({ -- enable syntax highlighting
 			highlight = {
 				enable = true,
+				disable = { "tmux" },
 			},
 			-- enable indentation
 			indent = { enable = true },
@@ -48,6 +49,7 @@ return {
 				"terraform",
 				"vimdoc",
 				"c",
+				"tmux",
 			},
 			auto_install = true,
 			sync_install = false,
