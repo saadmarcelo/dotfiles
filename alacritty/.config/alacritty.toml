@@ -33,3 +33,6 @@ style = "Regular"
 [font.bold_italic]
 family = "SauceCodePro Nerd Font"
 style = "Bold Italic"
+
+[selection]
+save_to_clipboard = true
