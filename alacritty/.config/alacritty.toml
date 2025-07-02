@@ -37,7 +37,7 @@ style = "Bold Italic"
 [selection]
 save_to_clipboard = true
 
-# Tema Catppuccin Latte
+
 [colors.primary]
 background = "#eff1f5"
 foreground = "#4c4f69"
@@ -46,7 +46,7 @@ foreground = "#4c4f69"
 black = "#5c5f77"
 red = "#d20f39"
 green = "#40a02b"
-yellow = "#df8e1d"
+yellow = "#fe640b"  # <-- CORRIGIDO para "Peach"
 blue = "#1e66f5"
 magenta = "#ea76cb"
 cyan = "#179299"
@@ -56,8 +56,19 @@ white = "#acb0be"
 black = "#6c6f85"
 red = "#d20f39"
 green = "#40a02b"
-yellow = "#df8e1d"
+yellow = "#fe640b"  # <-- CORRIGIDO para "Peach"
 blue = "#1e66f5"
 magenta = "#ea76cb"
 cyan = "#179299"
 white = "#bcc0cc"
+
+# Garanta que a seção dim também esteja correta, se você a usar
+[colors.dim]
+black = "#7c7f93"
+red = "#d20f39"
+green = "#40a02b"
+yellow = "#fe640b"  # <-- CORRIGIDO para "Peach"
+blue = "#1e66f5"
+magenta = "#ea76cb"
+cyan = "#179299"
+white = "#acb0be"
