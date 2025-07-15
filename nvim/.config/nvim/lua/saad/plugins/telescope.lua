@@ -16,6 +16,7 @@ return {
 				find_files = {
 					file_ignore_patterns = { ".git", ".venv" },
 					hidden = true,
+					no_ignore = true,
 				},
 				live_grep = {
 					file_ignore_patterns = { ".git", ".venv" },
