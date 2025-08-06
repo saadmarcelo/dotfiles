@@ -36,6 +36,7 @@ return {
 				"graphql",
 				"docker_compose_language_service",
 				"helm_ls",
+				"tflint",
 				"jsonls",
 				"sqlls",
 				"ruff",
