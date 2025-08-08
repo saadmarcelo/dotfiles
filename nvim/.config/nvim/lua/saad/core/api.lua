@@ -6,6 +6,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 vim.defer_fn(function()
-	vim.api.nvim_set_hl(0, "@property", { fg = "#000080" })
+	vim.api.nvim_set_hl(0, "@property", { fg = "#0000FF" })
 	vim.api.nvim_set_hl(0, "@variable.member", { fg = "#9400D3" })
 end, 100)
