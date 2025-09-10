@@ -25,7 +25,6 @@ return {
 		-- Função on_attach para configurar mapeamentos locais
 		local on_attach = function(client, bufnr)
 			local opts = { noremap = true, silent = true, buffer = bufnr }
-
 			vim.keymap.set("n", "<leader>lwl", function()
 				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 			end, opts)
@@ -54,32 +53,54 @@ return {
 		local servers = {
 			ansiblels = {
 				filetypes = { "yaml.ansible" },
-				root_dir = lspconfig.util.root_pattern("roles", "playbooks"),
+				root_dir = lspconfig.util.root_pattern("ansible.cfg", ".ansible-lint", "playbook.yml", "playbooks/"),
 			},
 			terraformls = {
 				filetypes = { "terraform", "tf" },
+				root_dir = lspconfig.util.root_pattern(".terraform", "*.tf"),
 			},
 			yamlls = {
 				filetypes = { "yaml", "yaml.kubernetes" },
 				settings = {
 					yaml = {
+						-- Resolver problema de schemas múltiplos
+						schemaStore = {
+							enable = true,
+							url = "https://www.schemastore.org/api/json/catalog.json",
+						},
 						schemas = {
-							["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.31.1-standalone-strict/all.json"] = {
+							-- Usar apenas um schema por tipo de arquivo
+							kubernetes = {
 								"*.k8s.yaml",
 								"k8s-*.yaml",
-								"/*.yaml",
+								"**/k8s/**/*.yaml",
+								"**/kubernetes/**/*.yaml",
 							},
-							["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-							["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-							-- ["http://json.schemastore.org/ansible-playbook"] = "playbooks/**/*.{yml,yaml}",
-							-- ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/**/*.{yml,yaml}",
-							["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
-							["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-							["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-							["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
+							["http://json.schemastore.org/github-workflow"] = {
+								".github/workflows/*.yml",
+								".github/workflows/*.yaml",
+							},
+							["http://json.schemastore.org/github-action"] = {
+								".github/action.yml",
+								".github/action.yaml",
+							},
+							["http://json.schemastore.org/kustomization"] = {
+								"kustomization.yml",
+								"kustomization.yaml",
+							},
+							["http://json.schemastore.org/chart"] = {
+								"Chart.yml",
+								"Chart.yaml",
+							},
 						},
 						validate = true,
 						completion = true,
+						hover = true,
+						-- Reduzir validações conflitantes
+						customTags = {
+							"!reference sequence",
+							"!secret scalar",
+						},
 					},
 				},
 			},
@@ -91,6 +112,14 @@ return {
 						},
 						completion = {
 							callSnippet = "Replace",
+						},
+						workspace = {
+							-- Make the server aware of Neovim runtime files
+							library = vim.api.nvim_get_runtime_file("", true),
+							checkThirdParty = false,
+						},
+						telemetry = {
+							enable = false,
 						},
 					},
 				},
@@ -108,12 +137,17 @@ return {
 			},
 		}
 
-		-- Configuração padrão para todos os LSPs
-		for server, config in pairs(servers) do
-			lspconfig[server].setup(vim.tbl_extend("keep", {
-				capabilities = capabilities,
-				on_attach = on_attach,
-			}, config))
-		end
+		-- Aguardar a inicialização completa do Mason antes de configurar LSPs
+		vim.schedule(function()
+			-- Configuração padrão para todos os LSPs
+			for server, config in pairs(servers) do
+				local final_config = vim.tbl_deep_extend("force", {
+					capabilities = capabilities,
+					on_attach = on_attach,
+				}, config)
+
+				lspconfig[server].setup(final_config)
+			end
+		end)
 	end,
 }

@@ -1,5 +1,5 @@
 export PATH=$HOME/.local/bin:$PATH
-
+export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
