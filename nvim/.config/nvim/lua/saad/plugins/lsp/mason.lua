@@ -7,10 +7,8 @@ return {
 	config = function()
 		-- import mason
 		local mason = require("mason")
-
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
 
 		-- enable mason and configure icons
@@ -24,6 +22,7 @@ return {
 			},
 		})
 
+		-- Configurar mason-lspconfig ANTES do mason-tool-installer
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
 			ensure_installed = {
@@ -39,7 +38,7 @@ return {
 				"tflint",
 				"jsonls",
 				"sqlls",
-				"ruff",
+				"ruff_lsp", -- mudança aqui: ruff -> ruff_lsp
 				"terraformls",
 				"eslint",
 				"taplo",
@@ -48,16 +47,21 @@ return {
 			automatic_installation = true,
 		})
 
-		mason_tool_installer.setup({
-			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"pylint", -- python linter
-				"eslint_d", -- js linter
-				"docformatter",
-			},
-		})
+		-- Aguardar um pouco antes de configurar o tool-installer
+		vim.schedule(function()
+			mason_tool_installer.setup({
+				ensure_installed = {
+					"prettier", -- prettier formatter
+					"stylua", -- lua formatter
+					"isort", -- python formatter
+					"black", -- python formatter
+					"pylint", -- python linter
+					"eslint_d", -- js linter
+					"docformatter",
+				},
+				auto_update = false, -- adicionar esta opção
+				run_on_start = true,
+			})
+		end)
 	end,
 }
