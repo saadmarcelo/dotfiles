@@ -101,3 +101,4 @@ KUBE_PS1_PREFIX="("            # Adiciona um prefixo antes do contexto
 KUBE_PS1_SUFFIX=")"            # Adiciona um sufixo depois do contexto
 KUBE_PS1_SYMBOL_USE_IMG=true   # Usa um ícone para o cluster
 
+export PATH="$HOME/.cargo/bin:$PATH"

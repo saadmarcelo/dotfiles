@@ -38,7 +38,7 @@ return {
 				"tflint",
 				"jsonls",
 				"sqlls",
-				"ruff_lsp", -- mudança aqui: ruff -> ruff_lsp
+				"ruff",
 				"terraformls",
 				"eslint",
 				"taplo",
