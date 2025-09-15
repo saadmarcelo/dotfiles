@@ -43,6 +43,7 @@ return {
 				"eslint",
 				"taplo",
 				"yamlls",
+				"jinja_lsp",
 			},
 			automatic_installation = true,
 		})
