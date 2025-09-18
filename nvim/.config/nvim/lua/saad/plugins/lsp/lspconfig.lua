@@ -16,7 +16,6 @@ return {
 	},
 	config = function()
 		-- Importações iniciais
-		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		-- Habilidades de autocompletar para todos os LSPs
@@ -49,18 +48,31 @@ return {
 			},
 		})
 
-		-- Configurações específicas para cada LSP
+		-- Configurações específicas para cada LSP usando vim.lsp.config
 		local servers = {
 			ansiblels = {
+				name = "ansiblels",
+				cmd = { "ansible-language-server", "--stdio" },
 				filetypes = { "yaml.ansible" },
-				root_dir = lspconfig.util.root_pattern("ansible.cfg", ".ansible-lint", "playbook.yml", "playbooks/"),
+				root_markers = { "ansible.cfg", ".ansible-lint", "playbook.yml", "playbooks/" },
+				capabilities = capabilities,
+				on_attach = on_attach,
 			},
 			terraformls = {
+				name = "terraformls",
+				cmd = { "terraform-ls", "serve" },
 				filetypes = { "terraform", "tf" },
-				root_dir = lspconfig.util.root_pattern(".terraform", "*.tf"),
+				root_markers = { ".terraform", "*.tf" },
+				capabilities = capabilities,
+				on_attach = on_attach,
 			},
 			yamlls = {
+				name = "yamlls",
+				cmd = { "yaml-language-server", "--stdio" },
 				filetypes = { "yaml", "yaml.kubernetes" },
+				root_markers = { ".git" },
+				capabilities = capabilities,
+				on_attach = on_attach,
 				settings = {
 					yaml = {
 						-- Resolver problema de schemas múltiplos
@@ -105,6 +117,21 @@ return {
 				},
 			},
 			lua_ls = {
+				name = "lua_ls",
+				cmd = { "lua-language-server" },
+				filetypes = { "lua" },
+				root_markers = {
+					".luarc.json",
+					".luarc.jsonc",
+					".luacheckrc",
+					".stylua.toml",
+					"stylua.toml",
+					"selene.toml",
+					"selene.yml",
+					".git",
+				},
+				capabilities = capabilities,
+				on_attach = on_attach,
 				settings = {
 					Lua = {
 						diagnostics = {
@@ -125,9 +152,12 @@ return {
 				},
 			},
 			dartls = {
+				name = "dartls",
 				cmd = { "dart", "language-server", "--protocol=lsp" },
 				filetypes = { "dart" },
-				root_dir = lspconfig.util.root_pattern("pubspec.yaml"),
+				root_markers = { "pubspec.yaml" },
+				capabilities = capabilities,
+				on_attach = on_attach,
 				settings = {
 					dart = {
 						completeFunctionCalls = true,
@@ -139,14 +169,9 @@ return {
 
 		-- Aguardar a inicialização completa do Mason antes de configurar LSPs
 		vim.schedule(function()
-			-- Configuração padrão para todos os LSPs
-			for server, config in pairs(servers) do
-				local final_config = vim.tbl_deep_extend("force", {
-					capabilities = capabilities,
-					on_attach = on_attach,
-				}, config)
-
-				lspconfig[server].setup(final_config)
+			-- Configurar usando vim.lsp.config (novo método)
+			for server_name, config in pairs(servers) do
+				vim.lsp.config[server_name] = config
 			end
 		end)
 	end,
