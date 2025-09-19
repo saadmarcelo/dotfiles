@@ -20,6 +20,25 @@ return {
 				liquid = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				-- Formatação para arquivos Jinja2
+				jinja2 = { "djlint" },
+			},
+			formatters = {
+				-- Configuração específica do djlint
+				djlint = {
+					command = "djlint",
+					args = {
+						"--reformat",
+						"--indent",
+						"2",
+						"--profile",
+						"jinja",
+						"--preserve-leading-space",
+						"--preserve-blank-lines",
+						"-",
+					},
+					stdin = true,
+				},
 			},
 			format_on_save = {
 				lsp_fallback = true,
@@ -28,6 +47,7 @@ return {
 			},
 		})
 
+		-- Keymaps para formatação
 		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
 			conform.format({
 				lsp_fallback = true,
@@ -35,5 +55,13 @@ return {
 				timeout_ms = 1000,
 			})
 		end, { desc = "Format file or range (in visual mode)" })
+
+		-- Comando personalizado para formatação específica de Jinja2
+		vim.api.nvim_create_user_command("FormatJinja", function()
+			conform.format({
+				formatters = { "djlint" },
+				timeout_ms = 3000,
+			})
+		end, { desc = "Format Jinja2 file with djlint" })
 	end,
 }

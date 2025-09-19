@@ -45,6 +45,14 @@ return {
 		vim.filetype.add({
 			extension = {
 				tf = "terraform",
+				j2 = "jinja2",
+				jinja = "jinja2",
+				jinja2 = "jinja2",
+			},
+			pattern = {
+				[".*%.j2"] = "jinja2",
+				[".*%.jinja"] = "jinja2",
+				[".*%.jinja2"] = "jinja2",
 			},
 		})
 
@@ -65,6 +73,19 @@ return {
 				root_markers = { ".terraform", "*.tf" },
 				capabilities = capabilities,
 				on_attach = on_attach,
+			},
+			jinja_lsp = {
+				name = "jinja_lsp",
+				cmd = { "jinja-lsp" },
+				filetypes = { "jinja2", "jinja" },
+				root_markers = { ".git", "requirements.txt", "pyproject.toml", "setup.py" },
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					templates = "./templates",
+					backend = { "./src", "./app" },
+					lang = "python",
+				},
 			},
 			yamlls = {
 				name = "yamlls",
