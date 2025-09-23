@@ -10,7 +10,6 @@ return {
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
-
 		-- enable mason and configure icons
 		mason.setup({
 			ui = {
@@ -21,7 +20,6 @@ return {
 				},
 			},
 		})
-
 		-- Configurar mason-lspconfig ANTES do mason-tool-installer
 		mason_lspconfig.setup({
 			-- list of servers for mason to install
@@ -43,11 +41,10 @@ return {
 				"eslint",
 				"taplo",
 				"yamlls",
-				"jinja_lsp",
+				"jinja_lsp", -- LSP para Jinja2
 			},
 			automatic_installation = true,
 		})
-
 		-- Aguardar um pouco antes de configurar o tool-installer
 		vim.schedule(function()
 			mason_tool_installer.setup({
@@ -59,6 +56,7 @@ return {
 					"pylint", -- python linter
 					"eslint_d", -- js linter
 					"docformatter",
+					"djlint", -- Jinja2 linter e formatter
 				},
 				auto_update = false, -- adicionar esta opção
 				run_on_start = true,
