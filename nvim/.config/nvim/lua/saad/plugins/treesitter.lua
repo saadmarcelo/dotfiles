@@ -9,10 +9,11 @@ return {
 		-- import nvim-treesitter plugin
 		local treesitter = require("nvim-treesitter.configs")
 
-		-- Configurar filetype para Jinja2
+		-- Configurar filetype para Jinja2 (mais simples)
 		vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 			pattern = { "*.j2", "*.jinja", "*.jinja2" },
 			callback = function()
+				-- Sempre usar filetype "jinja2" simples
 				vim.bo.filetype = "jinja2"
 			end,
 		})
@@ -21,7 +22,8 @@ return {
 		treesitter.setup({ -- enable syntax highlighting
 			highlight = {
 				enable = true,
-				additional_vim_regex_highlighting = { "terraform", "jinja2" },
+				-- Remover jinja2 daqui - não existe parser jinja2 no treesitter
+				additional_vim_regex_highlighting = { "terraform" },
 				disable = { "tmux" },
 			},
 			-- enable indentation

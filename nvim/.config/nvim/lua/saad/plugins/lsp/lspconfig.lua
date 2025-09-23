@@ -16,6 +16,7 @@ return {
 	},
 	config = function()
 		-- Importações iniciais
+		local lspconfig = require("lspconfig")
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 		-- Habilidades de autocompletar para todos os LSPs
@@ -33,15 +34,15 @@ return {
 		vim.diagnostic.config({
 			signs = {
 				text = {
-					[vim.diagnostic.severity.ERROR] = "",
-					[vim.diagnostic.severity.WARN] = "",
+					[vim.diagnostic.severity.ERROR] = "",
+					[vim.diagnostic.severity.WARN] = "",
 					[vim.diagnostic.severity.HINT] = "󰠠 ",
-					[vim.diagnostic.severity.INFO] = "",
+					[vim.diagnostic.severity.INFO] = "",
 				},
 			},
 		})
 
-		-- Adicionar suporte ao Terraform
+		-- Adicionar suporte ao Terraform e Jinja2
 		vim.filetype.add({
 			extension = {
 				tf = "terraform",
@@ -56,42 +57,37 @@ return {
 			},
 		})
 
-		-- Configurações específicas para cada LSP usando vim.lsp.config
-		local servers = {
-			ansiblels = {
-				name = "ansiblels",
-				cmd = { "ansible-language-server", "--stdio" },
-				filetypes = { "yaml.ansible" },
-				root_markers = { "ansible.cfg", ".ansible-lint", "playbook.yml", "playbooks/" },
+		-- Aguardar a inicialização completa do Mason antes de configurar LSPs
+		vim.schedule(function()
+			-- Configurar LSPs usando lspconfig tradicional
+
+			-- Ansible LSP
+			lspconfig.ansiblels.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-			},
-			terraformls = {
-				name = "terraformls",
-				cmd = { "terraform-ls", "serve" },
-				filetypes = { "terraform", "tf" },
-				root_markers = { ".terraform", "*.tf" },
+			})
+
+			-- Terraform LSP
+			lspconfig.terraformls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
-			},
-			jinja_lsp = {
-				name = "jinja_lsp",
-				cmd = { "jinja-lsp" },
+			})
+
+			-- Jinja LSP (configuração corrigida)
+			lspconfig.jinja_lsp.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
 				filetypes = { "jinja2", "jinja" },
-				root_markers = { ".git", "requirements.txt", "pyproject.toml", "setup.py" },
-				capabilities = capabilities,
-				on_attach = on_attach,
+				root_dir = lspconfig.util.root_pattern(".git", "requirements.txt", "pyproject.toml", "setup.py"),
 				settings = {
 					templates = "./templates",
 					backend = { "./src", "./app" },
 					lang = "python",
 				},
-			},
-			yamlls = {
-				name = "yamlls",
-				cmd = { "yaml-language-server", "--stdio" },
-				filetypes = { "yaml", "yaml.kubernetes" },
-				root_markers = { ".git" },
+			})
+
+			-- YAML LSP
+			lspconfig.yamlls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -136,21 +132,10 @@ return {
 						},
 					},
 				},
-			},
-			lua_ls = {
-				name = "lua_ls",
-				cmd = { "lua-language-server" },
-				filetypes = { "lua" },
-				root_markers = {
-					".luarc.json",
-					".luarc.jsonc",
-					".luacheckrc",
-					".stylua.toml",
-					"stylua.toml",
-					"selene.toml",
-					"selene.yml",
-					".git",
-				},
+			})
+
+			-- Lua LSP
+			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -171,12 +156,10 @@ return {
 						},
 					},
 				},
-			},
-			dartls = {
-				name = "dartls",
-				cmd = { "dart", "language-server", "--protocol=lsp" },
-				filetypes = { "dart" },
-				root_markers = { "pubspec.yaml" },
+			})
+
+			-- Dart LSP
+			lspconfig.dartls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
 				settings = {
@@ -185,15 +168,7 @@ return {
 						showTodos = true,
 					},
 				},
-			},
-		}
-
-		-- Aguardar a inicialização completa do Mason antes de configurar LSPs
-		vim.schedule(function()
-			-- Configurar usando vim.lsp.config (novo método)
-			for server_name, config in pairs(servers) do
-				vim.lsp.config[server_name] = config
-			end
+			})
 		end)
 	end,
 }
