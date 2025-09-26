@@ -15,17 +15,3 @@ vim.api.nvim_create_autocmd("RecordingLeave", {
 		vim.notify("Gravação de macro no registrador " .. register .. " concluída", vim.log.levels.INFO)
 	end,
 })
-
--- Configuração simplificada de filetype para Jinja2
-vim.filetype.add({
-	extension = {
-		j2 = "jinja2",
-		jinja = "jinja2",
-		jinja2 = "jinja2",
-	},
-	pattern = {
-		[".*%.j2$"] = "jinja2",
-		[".*%.jinja$"] = "jinja2",
-		[".*%.jinja2$"] = "jinja2",
-	},
-})
