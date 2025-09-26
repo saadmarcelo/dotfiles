@@ -117,9 +117,5 @@ return {
 				end
 			end,
 		})
-
-		-- Highlight personalizado para diagnósticos Jinja2
-		vim.api.nvim_set_hl(0, "TroubleJinja2Error", { fg = "#f38ba8", bg = "#1e1e2e" })
-		vim.api.nvim_set_hl(0, "TroubleJinja2Warning", { fg = "#f9e2af", bg = "#1e1e2e" })
 	end,
 }

@@ -14,8 +14,6 @@ return {
 			python = { "pylint" },
 			terraform = { "tflint" },
 			tf = { "tflint" },
-			-- Linting para arquivos Jinja2
-			jinja2 = { "djlint" },
 		}
 
 		-- Configuração personalizada do djlint para linting

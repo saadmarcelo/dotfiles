@@ -41,7 +41,6 @@ return {
 				"eslint",
 				"taplo",
 				"yamlls",
-				"jinja_lsp", -- LSP para Jinja2
 			},
 			automatic_installation = true,
 		})
