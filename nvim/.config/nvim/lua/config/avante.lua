@@ -19,10 +19,11 @@ avante.setup({
 
 	openai = {
 		endpoint = "https://api.openai.com/v1",
-		model = "gpt-5", -- GPT-5!
+		model = "gpt-4o", -- GPT-5!
 		timeout = 30000, -- Timeout em ms
 		temperature = 0.2,
 		max_tokens = 8192, -- GPT-5 suporta mais tokens
+		stream = true,
 		["local"] = false,
 	},
 
