@@ -2,3 +2,10 @@ nvim/.config/nvim/lazy-lock.json
 nvim/.config/nvim/lua/secrets.lua
 .DS_Store
 **/.DS_Store
+# Ignore Terraform files
+*.tf
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+.terraform.lock.hcl
