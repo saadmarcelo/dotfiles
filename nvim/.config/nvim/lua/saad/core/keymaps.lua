@@ -36,9 +36,9 @@ keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "diagnostic next " })
 keymap.set("n", "<leader>D", vim.diagnostic.open_float, { desc = "Open Float Diagnostic" })
 
 -- Adicionando seus keybinds personalizados
-keymap.set("n", "<leader>ld", vim.lsp.buf.type_definition, { desc = "go to definition" })
-keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "go to definition" })
-keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "go to definition" })
+keymap.set("n", "<leader>ld", vim.lsp.buf.type_definition, { desc = "LSP: Type Definition" })
+keymap.set("n", "<leader>li", vim.lsp.buf.implementation, { desc = "LSP: Implementation" })
+keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { desc = "LSP: Signature Help" })
 keymap.set("n", "<leader>lwa", vim.lsp.buf.add_workspace_folder, { desc = "go to definition" })
 keymap.set("n", "<leader>lwr", vim.lsp.buf.remove_workspace_folder, { desc = "go to definition" })
 -- increment/decrement numbers
