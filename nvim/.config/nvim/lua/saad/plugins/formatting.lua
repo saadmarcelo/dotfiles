@@ -6,10 +6,10 @@ return {
 
 		conform.setup({
 			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				javascriptreact = { "prettier" },
-				typescriptreact = { "prettier" },
+				javascript = { "prettierd", "prettier" },
+				typescript = { "prettierd", "prettier" },
+				javascriptreact = { "prettierd", "prettier" },
+				typescriptreact = { "prettierd", "prettier" },
 				svelte = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
@@ -38,6 +38,15 @@ return {
 						"-",
 					},
 					stdin = true,
+				},
+				-- Configuração do Prettier com regras para CDK
+				prettier = {
+					prepend_args = {
+						"--single-quote",
+						"--trailing-comma=all",
+						"--print-width=100",
+						"--tab-width=2",
+					},
 				},
 			},
 			format_on_save = {

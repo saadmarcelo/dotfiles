@@ -59,6 +59,78 @@ return {
 
 			-- Aguardar a inicialização completa do Mason antes de configurar LSPs
 			vim.schedule(function()
+				vim.lsp.config.ts_ls = {
+					cmd = { "typescript-language-server", "--stdio" },
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+					},
+					root_markers = {
+						"package.json",
+						"tsconfig.json",
+						"jsconfig.json",
+						".git",
+					},
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = {
+						typescript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+							suggest = {
+								completeFunctionCalls = true,
+							},
+						},
+						javascript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+							suggest = {
+								completeFunctionCalls = true,
+							},
+						},
+					},
+				}
+
+				-- ========== ESLint LSP (LINTING) ==========
+				vim.lsp.config.eslint = {
+					cmd = { "vscode-eslint-language-server", "--stdio" },
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+					},
+					root_markers = {
+						".eslintrc",
+						".eslintrc.js",
+						".eslintrc.json",
+						"package.json",
+					},
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = {
+						codeActionOnSave = {
+							enable = true,
+							mode = "all",
+						},
+					},
+				}
 				-- Usando a nova API vim.lsp.config
 
 				-- Ansible LSP
@@ -236,6 +308,66 @@ return {
 
 			-- Aguardar a inicialização completa do Mason antes de configurar LSPs
 			vim.schedule(function()
+				-- ========== TYPESCRIPT LSP ==========
+				lspconfig.ts_ls.setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = {
+						typescript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+							suggest = {
+								completeFunctionCalls = true,
+							},
+						},
+						javascript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+							suggest = {
+								completeFunctionCalls = true,
+							},
+						},
+					},
+				})
+
+				-- ========== ESLint LSP ==========
+				lspconfig.eslint.setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = {
+						codeActionOnSave = {
+							enable = true,
+							mode = "all",
+						},
+					},
+				})
+
+				-- JSON LSP
+				lspconfig.jsonls.setup({
+					capabilities = capabilities,
+					on_attach = on_attach,
+					settings = {
+						json = {
+							schemas = require("schemastore").json.schemas(),
+							validate = { enable = true },
+						},
+					},
+				})
+
 				-- Configurar LSPs usando lspconfig tradicional (versão antiga)
 
 				-- Ansible LSP

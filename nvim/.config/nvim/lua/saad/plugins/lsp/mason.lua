@@ -5,12 +5,10 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 	},
 	config = function()
-		-- import mason
 		local mason = require("mason")
-		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
 		local mason_tool_installer = require("mason-tool-installer")
-		-- enable mason and configure icons
+
 		mason.setup({
 			ui = {
 				icons = {
@@ -20,9 +18,8 @@ return {
 				},
 			},
 		})
-		-- Configurar mason-lspconfig ANTES do mason-tool-installer
+
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
 			ensure_installed = {
 				"jqls",
 				"html",
@@ -41,23 +38,29 @@ return {
 				"eslint",
 				"taplo",
 				"yamlls",
+				-- ========== TYPESCRIPT/CDK ==========
+				"ts_ls", -- TypeScript Language Server (novo nome do tsserver)
+				"eslint", -- Linting para TS/JS
 			},
 			automatic_installation = true,
 		})
-		-- Aguardar um pouco antes de configurar o tool-installer
+
 		vim.schedule(function()
 			mason_tool_installer.setup({
 				ensure_installed = {
-					"prettier", -- prettier formatter
+					"prettier", -- formatter
 					"stylua", -- lua formatter
 					"isort", -- python formatter
 					"black", -- python formatter
 					"pylint", -- python linter
-					"eslint_d", -- js linter
+					"eslint_d", -- js/ts linter
 					"docformatter",
 					"djlint", -- Jinja2 linter e formatter
+					-- ========== TYPESCRIPT/CDK ==========
+					"prettierd", -- Formatter rápido para TS/JS
+					"biome", -- Linter/Formatter alternativo super rápido
 				},
-				auto_update = false, -- adicionar esta opção
+				auto_update = false,
 				run_on_start = true,
 			})
 		end)
