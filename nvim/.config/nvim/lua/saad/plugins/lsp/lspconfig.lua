@@ -42,6 +42,19 @@ return {
 				},
 			})
 
+			vim.lsp.config.prismals = {
+				cmd = { "prisma-language-server", "--stdio" },
+				filetypes = { "prisma" },
+				root_markers = { "package.json", ".git" },
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					prisma = {
+						prismaFmtBinPath = "",
+					},
+				},
+			}
+
 			-- Adicionar suporte ao Terraform e Jinja2
 			vim.filetype.add({
 				extension = {
@@ -308,6 +321,8 @@ return {
 
 			-- Aguardar a inicialização completa do Mason antes de configurar LSPs
 			vim.schedule(function()
+				-- prisma
+
 				-- ========== TYPESCRIPT LSP ==========
 				lspconfig.ts_ls.setup({
 					capabilities = capabilities,

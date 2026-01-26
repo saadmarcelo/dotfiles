@@ -22,6 +22,7 @@ return {
 				python = { "isort", "black" },
 				-- Formatação para arquivos Jinja2
 				jinja2 = { "djlint" },
+				prisma = { "prisma_format" },
 			},
 			formatters = {
 				-- Configuração específica do djlint
@@ -48,7 +49,16 @@ return {
 						"--tab-width=2",
 					},
 				},
+
+				-- ✨ Configuração do Prisma Format
+				prisma_format = {
+					command = "prisma",
+					args = { "format", "--schema", "$FILENAME" },
+					stdin = false,
+					-- O prisma format precisa do arquivo físico, não stdin
+				},
 			},
+
 			format_on_save = {
 				lsp_fallback = true,
 				async = false,
@@ -72,5 +82,13 @@ return {
 				timeout_ms = 3000,
 			})
 		end, { desc = "Format Jinja2 file with djlint" })
+
+		-- ✨ Comando personalizado para formatação de Prisma
+		vim.api.nvim_create_user_command("FormatPrisma", function()
+			conform.format({
+				formatters = { "prisma_format" },
+				timeout_ms = 3000,
+			})
+		end, { desc = "Format Prisma schema file" })
 	end,
 }

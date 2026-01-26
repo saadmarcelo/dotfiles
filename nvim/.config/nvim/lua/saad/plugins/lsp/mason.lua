@@ -40,6 +40,7 @@ return {
 				"yamlls",
 				-- ========== TYPESCRIPT/CDK ==========
 				"ts_ls", -- TypeScript Language Server (novo nome do tsserver)
+				"prismals",
 			},
 			automatic_installation = true,
 		})
