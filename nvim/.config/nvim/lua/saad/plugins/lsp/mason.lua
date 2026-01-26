@@ -40,7 +40,6 @@ return {
 				"yamlls",
 				-- ========== TYPESCRIPT/CDK ==========
 				"ts_ls", -- TypeScript Language Server (novo nome do tsserver)
-				"eslint", -- Linting para TS/JS
 			},
 			automatic_installation = true,
 		})
