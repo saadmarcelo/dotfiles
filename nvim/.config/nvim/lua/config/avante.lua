@@ -14,7 +14,7 @@ avante.setup({
 	-- ============================================
 	-- CONFIGURAÇÃO DO PROVIDER (OpenAI)
 	-- ============================================
-	provider = "openai",
+	provider = "openai",  -- Alternativamente, use "claude" para Claude.ai
 	auto_suggestions_provider = "openai",
 
 	openai = {
