@@ -20,3 +20,4 @@ require("lazy").setup({ { import = "saad.plugins" }, { import = "saad.plugins.ls
 		notify = false,
 	},
 })
+joão
