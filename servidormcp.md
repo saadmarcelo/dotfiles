@@ -12,8 +12,8 @@ Este documento contém o guia completo de configuração dos servidores MCP (Mod
 |---|----------|--------|-----------|
 | 1 | **AWS MCP** | ✅ Ativo | Gerencia recursos AWS (EC2, S3, Lambda, etc.) |
 | 2 | **Kubernetes MCP** | ✅ Ativo | Gerencia clusters K8s |
-| 3 | **Terraform Registry MCP** | ✅ Ativo | Consulta providers e módulos do Terraform |
-| 4 | **Docker MCP** | ❌ Desabilitado | Timeout - precisa configuração adicional |
+| 3 | **Docker MCP** | ✅ Ativo | Via Docker Desktop MCP Toolkit |
+| 4 | **Terraform Registry MCP** | ✅ Ativo | Consulta providers e módulos do Terraform |
 | 5 | **AWS IaC MCP** | ❌ Precisa uvx | CDK e CloudFormation (requer instalação de uv) |
 
 ---
@@ -44,8 +44,9 @@ Este documento contém o guia completo de configuração dos servidores MCP (Mod
     },
     "docker": {
       "type": "local",
-      "command": ["npx", "-y", "@thelord/mcp-server-docker-npx"],
-      "enabled": false,
+      "command": ["docker", "mcp", "gateway", "run"],
+      "enabled": true,
+      "timeout": 60000,
       "environment": {}
     },
     "terraform-registry": {
@@ -157,23 +158,30 @@ export TFC_TOKEN="seu-token-terraform-cloud"  # opcional
 
 ---
 
-### 4. Docker MCP Server (Desabilitado)
+### 4. Docker MCP Server
 
-**Pacote:** `@thelord/mcp-server-docker-npx`
+**Status:** ✅ Ativo (via Docker Desktop MCP Toolkit)
 
-**Status:** Desabilitado (timeout)
+**Pré-requisitos:**
+1. Abrir Docker Desktop
+2. Settings > Beta features > Enable Docker MCP Toolkit
+3. Apply
 
-**Para habilitar:**
+**Configuração no opencode.jsonc:**
 ```json
 "docker": {
   "type": "local",
-  "command": ["npx", "-y", "@thelord/mcp-server-docker-npx"],
-  "enabled": true
+  "command": ["docker", "mcp", "gateway", "run"],
+  "enabled": true,
+  "timeout": 60000
 }
 ```
 
-**Alternativa recomendada:**
-Usar o Docker Desktop MCP Toolkit (já disponível no Docker Desktop)
+**Recursos disponíveis via Docker Desktop MCP Toolkit:**
+- 200+ servidores MCP pré-configurados
+- Isolados em containers
+- Configuração de variáveis de ambiente e secrets
+- Segurança com validação de inputs/outputs
 
 ---
 
