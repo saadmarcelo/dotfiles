@@ -1,0 +1,43 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    // AWS MCP Server - Gerencia recursos AWS
+    "aws": {
+      "type": "local",
+      "command": ["npx", "-y", "@imazhar101/mcp-aws-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    // Kubernetes MCP Server - Gerencia clusters K8s
+    "kubernetes": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-kubernetes"],
+      "enabled": true,
+      "environment": {}
+    },
+    // Docker MCP Server - via Docker Desktop MCP Toolkit
+    // Precisa habilitar: Docker Desktop > Settings > Beta > Enable Docker MCP Toolkit
+    "docker": {
+      "type": "local",
+      "command": ["docker", "mcp", "gateway", "run"],
+      "enabled": true,
+      "timeout": 60000,
+      "environment": {}
+    },
+    // Terraform Registry MCP - Consulta providers e módulos
+    "terraform-registry": {
+      "type": "local",
+      "command": ["npx", "-y", "terraform-mcp-server"],
+      "enabled": true,
+      "environment": {}
+    }
+    // AWS IaC MCP - CDK e CloudFormation (requer uvx)
+    // Para habilitar: brew install uv
+    // "aws-iac": {
+    //   "type": "local",
+    //   "command": ["uvx", "awslabs.cdk-mcp-server"],
+    //   "enabled": true,
+    //   "environment": {}
+    // }
+  }
+}
