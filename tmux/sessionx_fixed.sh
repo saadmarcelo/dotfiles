@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Script corrigido para sessionx - mostra TODAS as sessões
+# Script corrigido para sessionx - mostra TODAS as sessões com preview
 
 CURRENT="$(tmux display-message -p '#S')"
 
@@ -12,8 +12,15 @@ if [[ -z "$sessions" ]]; then
     sessions="$CURRENT"
 fi
 
-# Selecionar sessão com fzf
-selected=$(echo "$sessions" | fzf-tmux -p 75%,85% --prompt="Sessions: ")
+# Script de preview
+PREVIEW_SCRIPT="$HOME/.tmux/plugins/tmux-sessionx/scripts/preview.sh"
+
+# Selecionar sessão com fzf + preview
+selected=$(echo "$sessions" | fzf-tmux \
+    -p 75%,85% \
+    --prompt="Sessions: " \
+    --preview-window=top,50% \
+    --preview="$PREVIEW_SCRIPT {}")
 
 # Se algo foi selecionado
 if [[ -n "$selected" ]]; then

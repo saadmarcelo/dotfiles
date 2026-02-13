@@ -136,10 +136,60 @@ return {
 │   │       │       │   └── which-key.lua
 │   │       │       └── lazy.lua
 ├── tmux
-│   └── .tmux.conf
+│   ├── .tmux.conf
+│   └── sessionx_fixed.sh          # Script corrigido para troca de sessões
 └── zshrc
     └── .zshrc
 ```
+
+---
+
+## Tmux Configuration
+
+### Plugins
+
+- **tpm**: Gerenciador de plugins do tmux
+- **tmux-sensible**: Configurações sensíveis defaults
+- **tmux-yank**: Suporte a clipboard
+- **tmux-resurrect**: Salvar/restaurar sessões
+- **tmux-continuum**: Restauração automática de sessões
+- **vim-tmux-navigator**: Navegação vim/tmux integrada
+- **tmux-sessionx**: Troca de sessões com fzf
+- **catppuccin**: Tema visual
+
+### tmux-sessionx (Script Corrigido)
+
+Este dotfiles inclui uma versão corrigida do plugin `tmux-sessionx` que corrige bugs com múltiplas sessões.
+
+**Arquivo:** `tmux/sessionx_fixed.sh`
+
+**Atalho:** `<prefix> + O`
+
+**Funcionalidades:**
+- Lista todas as sessões (incluindo a atual)
+- Preview em tempo real do conteúdo da sessão
+- Criação de novas sessões
+- Troca rápida entre sessões
+
+**Dependências:**
+- `fzf` - fuzzy finder (obrigatório)
+- Plugin `tmux-sessionx` (opcional - só precisa para o preview)
+
+**Instalação do plugin para preview:**
+```bash
+git clone https://github.com/omerxx/tmux-sessionx.git ~/.tmux/plugins/tmux-sessionx
+```
+
+### Keybindings Tmux
+
+| Atalho | Descrição |
+|--------|-----------|
+| `<prefix> + O` | Abrir seletor de sessões |
+| `<prefix> + c` | Nova janela |
+| `<prefix> + "` | Split vertical |
+| `<prefix> + %` | Split horizontal |
+| `<prefix> + h/j/k/l` | Navegar painéis (modo vim) |
+| `<prefix> + a` | Sincronizar painéis |
 
 ---
 

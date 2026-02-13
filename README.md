@@ -32,15 +32,42 @@ Após clonar o repositorio entrar na pasta dotfiles
 
 ## Tmux
 
-`git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+### Instalação
 
-#type this in terminal if tmux is already running
+```bash
+# 1. Instalar TPM (Tmux Plugin Manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-`tmux source ~/.tmux.conf`
+# 2. Criar symlink para configuração
+ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
 
-### Para instalar os plugin
+# 3. Instalar dependências
+brew install fzf          # fuzzy finder (obrigatório para sessionx)
+```
+
+### Para instalar os plugins
 
 Press prefix + I (capital i, as in Install) to fetch the plugin.
+
+### tmux-sessionx (Plugin de Troca de Sessões)
+
+Este dotfiles inclui uma versão corrigida do plugin `tmux-sessionx` que funciona corretamente com múltiplas sessões.
+
+**Dependência obrigatória:**
+- `fzf` - precisa estar instalado para o plugin funcionar
+
+**Instalação do plugin (para ter o preview):**
+```bash
+git clone https://github.com/omerxx/tmux-sessionx.git ~/.tmux/plugins/tmux-sessionx
+```
+
+**Atalho:** `Ctrl+b O` - Abre seletor de sessões com preview
+
+**Funcionalidades:**
+- Lista todas as sessões (incluindo a atual)
+- Preview em tempo real do conteúdo da sessão
+- Criação de novas sessões
+- Troca rápida entre sessões
 
 ## zshrc
 
