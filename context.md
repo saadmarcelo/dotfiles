@@ -289,6 +289,69 @@ No terminal do OpenCode:
 - `/share` - Compartilhar conversa
 - `/help` - Ajuda completa
 
+---
+
+## 🔧 MCP Servers (DevOps)
+
+O OpenCode suporta MCP (Model Context Protocol) servers para integração com ferramentas DevOps. A configuração está em `~/.config/opencode/opencode.json`.
+
+### MCPs Configurados
+
+| MCP | Descrição | Comando |
+|-----|-----------|---------|
+| **AWS** | Gerencia recursos AWS (EC2, S3, Lambda, etc) | `npx -y @imazhar101/mcp-aws-server` |
+| **Kubernetes** | Gerencia clusters K8s (pods, services, deployments) | `npx -y mcp-server-kubernetes` |
+| **Docker** | Gerencia containers e imagens Docker | `docker mcp gateway run` |
+| **Terraform Registry** | Consulta providers e módulos do Terraform | `npx -y terraform-mcp-server` |
+
+### Arquivo de Configuração
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "aws": {
+      "type": "local",
+      "command": ["npx", "-y", "@imazhar101/mcp-aws-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    "kubernetes": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-kubernetes"],
+      "enabled": true,
+      "environment": {}
+    },
+    "docker": {
+      "type": "local",
+      "command": ["docker", "mcp", "gateway", "run"],
+      "enabled": true,
+      "timeout": 60000,
+      "environment": {}
+    },
+    "terraform-registry": {
+      "type": "local",
+      "command": ["npx", "-y", "terraform-mcp-server"],
+      "enabled": true,
+      "environment": {}
+    }
+  }
+}
+```
+
+### Pré-requisitos
+
+- **AWS MCP**: AWS CLI configurado (`aws configure`)
+- **Kubernetes MCP**: `kubectl` configurado e acesso ao cluster
+- **Docker MCP**: Docker Desktop com MCP Toolkit habilitado (Settings > Beta > Enable Docker MCP Toolkit)
+- **Terraform**: Node.js instalado (para npx)
+
+### Verificar MCPs Ativos
+
+```bash
+opencode --help  # Verificar status dos MCPs
+```
+
 ### Contexto para AI
 
 Quando sugerir configurações Neovim:
