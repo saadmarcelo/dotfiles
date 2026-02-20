@@ -304,9 +304,10 @@ O OpenCode suporta MCP (Model Context Protocol) servers para integração com fe
 | **Docker** | Gerencia containers e imagens Docker | `docker mcp gateway run` | ✅ Ativo |
 | **Terraform Registry** | Consulta providers e módulos do Terraform | `npx -y terraform-mcp-server` | ✅ Ativo |
 | **AWS IaC** | CDK + CloudFormation (best practices, validação) | `uvx awslabs.cdk-mcp-server@latest` | ✅ Ativo |
+| **Ansible** | Ansible (scaffolding, lint, execução de playbooks) | `uvx ansible-mcp-server` | ✅ Ativo |
 | **GitHub** | Repositórios, PRs, issues | `npx -y @modelcontextprotocol/server-github` | ✅ Ativo |
-| **Ansible** | Ansible (scaffolding, lint, execução de playbooks) | TBD | ⚠️ Desabilitado |
 | **PostgreSQL** | Query databases PostgreSQL | `npx -y @modelcontextprotocol/server-postgres` | ⚠️ Desabilitado (precisa DATABASE_URL) |
+| **Context7** | Documentação atualizada de bibliotecas | `npx -y @upstash/context7-mcp` | ✅ Ativo |
 
 ### Arquivo de Configuração
 
@@ -347,8 +348,8 @@ O OpenCode suporta MCP (Model Context Protocol) servers para integração com fe
     },
     "ansible": {
       "type": "local",
-      "command": ["echo", "ansible-mcp-not-available"],
-      "enabled": false,
+      "command": ["uvx", "ansible-mcp-server"],
+      "enabled": true,
       "environment": {}
     },
     "github": {
@@ -366,6 +367,14 @@ O OpenCode suporta MCP (Model Context Protocol) servers para integração com fe
       "environment": {
         "DATABASE_URL": "${DATABASE_URL}"
       }
+    },
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "enabled": true,
+      "environment": {
+        "CONTEXT7_API_KEY": "SUA_CHAVE_API"
+      }
     }
   }
 }
@@ -381,6 +390,7 @@ O OpenCode suporta MCP (Model Context Protocol) servers para integração com fe
 - **Ansible MCP**: ⚠️ Em desenvolvimento - sem pacote disponível
 - **GitHub MCP**: Já configurado e funcionando
 - **PostgreSQL MCP**: Variável de ambiente `DATABASE_URL` necessária (desabilitado temporariamente)
+- **Context7 MCP**: API key configurada
 
 ### Configurar Variáveis de Ambiente
 
