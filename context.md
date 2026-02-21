@@ -289,6 +289,125 @@ No terminal do OpenCode:
 - `/share` - Compartilhar conversa
 - `/help` - Ajuda completa
 
+---
+
+## 🔧 MCP Servers (DevOps)
+
+O OpenCode suporta MCP (Model Context Protocol) servers para integração com ferramentas DevOps. A configuração está em `~/.config/opencode/opencode.json`.
+
+### MCPs Configurados
+
+| MCP | Descrição | Comando | Status |
+|-----|-----------|---------|--------|
+| **AWS** | Gerencia recursos AWS (EC2, S3, Lambda, etc) | `npx -y @imazhar101/mcp-aws-server` | ✅ Ativo |
+| **Kubernetes** | Gerencia clusters K8s (pods, services, deployments) | `npx -y mcp-server-kubernetes` | ✅ Ativo |
+| **Docker** | Gerencia containers e imagens Docker | `docker mcp gateway run` | ✅ Ativo |
+| **Terraform Registry** | Consulta providers e módulos do Terraform | `npx -y terraform-mcp-server` | ✅ Ativo |
+| **AWS IaC** | CDK + CloudFormation (best practices, validação) | `uvx awslabs.cdk-mcp-server@latest` | ✅ Ativo |
+| **Ansible** | Ansible (scaffolding, lint, execução de playbooks) | `uvx ansible-mcp-server` | ✅ Ativo |
+| **GitHub** | Repositórios, PRs, issues | `npx -y @modelcontextprotocol/server-github` | ✅ Ativo |
+| **PostgreSQL** | Query databases PostgreSQL | `npx -y @modelcontextprotocol/server-postgres` | ⚠️ Desabilitado (precisa DATABASE_URL) |
+| **Context7** | Documentação atualizada de bibliotecas | `npx -y @upstash/context7-mcp` | ✅ Ativo |
+
+### Arquivo de Configuração
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "aws": {
+      "type": "local",
+      "command": ["npx", "-y", "@imazhar101/mcp-aws-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    "kubernetes": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-kubernetes"],
+      "enabled": true,
+      "environment": {}
+    },
+    "docker": {
+      "type": "local",
+      "command": ["docker", "mcp", "gateway", "run"],
+      "enabled": true,
+      "timeout": 60000,
+      "environment": {}
+    },
+    "terraform-registry": {
+      "type": "local",
+      "command": ["npx", "-y", "terraform-mcp-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    "aws-iac": {
+      "type": "local",
+      "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
+      "enabled": true,
+      "environment": {}
+    },
+    "ansible": {
+      "type": "local",
+      "command": ["uvx", "ansible-mcp-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "postgres": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-postgres"],
+      "enabled": false,
+      "environment": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      }
+    },
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "enabled": true,
+      "environment": {
+        "CONTEXT7_API_KEY": "SUA_CHAVE_API"
+      }
+    }
+  }
+}
+```
+
+### Pré-requisitos
+
+- **AWS MCP**: AWS CLI configurado (`aws configure`)
+- **Kubernetes MCP**: `kubectl` configurado e acesso ao cluster
+- **Docker MCP**: Docker Desktop com MCP Toolkit habilitado (Settings > Beta > Enable Docker MCP Toolkit)
+- **Terraform**: Node.js instalado (para npx)
+- **AWS IaC MCP**: `uv` instalado (`brew install uv`) - ✅ Instalado
+- **Ansible MCP**: ⚠️ Em desenvolvimento - sem pacote disponível
+- **GitHub MCP**: Já configurado e funcionando
+- **PostgreSQL MCP**: Variável de ambiente `DATABASE_URL` necessária (desabilitado temporariamente)
+- **Context7 MCP**: API key configurada
+
+### Configurar Variáveis de Ambiente
+
+Adicione no `secrets.lua` ou exporte manualmente:
+
+```lua
+-- No secrets.lua
+github_token = "ghp_seu_token_aqui",
+-- DATABASE_URL deve ser passado diretamente no ambiente
+```
+
+### Verificar MCPs Ativos
+
+```bash
+opencode mcp list
+```
+
 ### Contexto para AI
 
 Quando sugerir configurações Neovim:
