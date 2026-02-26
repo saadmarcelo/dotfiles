@@ -14,7 +14,11 @@ Este documento contém o guia completo de configuração dos servidores MCP (Mod
 | 2 | **Kubernetes MCP** | ✅ Ativo | Gerencia clusters K8s |
 | 3 | **Docker MCP** | ✅ Ativo | Via Docker Desktop MCP Toolkit |
 | 4 | **Terraform Registry MCP** | ✅ Ativo | Consulta providers e módulos do Terraform |
-| 5 | **AWS IaC MCP** | ❌ Precisa uvx | CDK e CloudFormation (requer instalação de uv) |
+| 5 | **AWS IaC MCP** | ✅ Ativo | CDK e CloudFormation (requer uv) |
+| 6 | **Ansible MCP** | ✅ Ativo | Gerencia Ansible |
+| 7 | **GitHub MCP** | ✅ Ativo | Repositórios, PRs, issues |
+| 8 | **PostgreSQL MCP** | ❌ Desabilitado | Consulta databases |
+| 9 | **Context7 MCP** | ✅ Ativo | Documentação de bibliotecas |
 
 ---
 
