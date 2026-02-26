@@ -58,6 +58,44 @@ Este documento contém o guia completo de configuração dos servidores MCP (Mod
       "command": ["npx", "-y", "terraform-mcp-server"],
       "enabled": true,
       "environment": {}
+    },
+    "aws-iac": {
+      "type": "local",
+      "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
+      "enabled": true,
+      "timeout": 120000,
+      "environment": {}
+    },
+    "ansible": {
+      "type": "local",
+      "command": ["uvx", "ansible-mcp-server"],
+      "enabled": true,
+      "timeout": 120000,
+      "environment": {}
+    },
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "postgres": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-postgres"],
+      "enabled": false,
+      "environment": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      }
+    },
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "enabled": true,
+      "environment": {
+        "CONTEXT7_API_KEY": "SUA_CHAVE_API_AQUI"
+      }
     }
   }
 }
@@ -193,7 +231,7 @@ export TFC_TOKEN="seu-token-terraform-cloud"  # opcional
 
 **Pacote:** `awslabs.cdk-mcp-server`
 
-**Status:** Precisa de instalação adicional (uvx)
+**Status:** Precisa de uvx (já instalado via brew)
 
 **Instalação do uvx:**
 ```bash
@@ -208,8 +246,9 @@ brew install uv
 ```json
 "aws-iac": {
   "type": "local",
-  "command": ["uvx", "awslabs.cdk-mcp-server"],
-  "enabled": true
+  "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
+  "enabled": true,
+  "timeout": 120000
 }
 ```
 
@@ -218,6 +257,116 @@ brew install uv
 - CDK Nag (segurança e compliance)
 - AWS Solutions Constructs
 - Geração de schemas para Bedrock Agent
+
+---
+
+### 6. Ansible MCP Server
+
+**Pacote:** `ansible-mcp-server`
+
+**Status:** Precisa de uvx
+
+**Configuração:**
+```json
+"ansible": {
+  "type": "local",
+  "command": ["uvx", "ansible-mcp-server"],
+  "enabled": true,
+  "timeout": 120000
+}
+```
+
+**Recursos:**
+- Execução de playbooks
+- Linting de Ansible
+- Scaffolding de playbooks
+- Gerenciamento de inventário
+
+---
+
+### 7. GitHub MCP Server
+
+**Pacote:** `@modelcontextprotocol/server-github`
+
+**Status:** Ativo
+
+**Variáveis de ambiente:**
+```bash
+export GITHUB_TOKEN="seu_token_aqui"
+```
+
+**Configuração:**
+```json
+"github": {
+  "type": "local",
+  "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+  "enabled": true,
+  "environment": {
+    "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+  }
+}
+```
+
+**Recursos:**
+- Listar repositórios
+- Criar/fechar issues
+- Gerenciar pull requests
+- Ações do GitHub
+
+---
+
+### 8. PostgreSQL MCP Server
+
+**Pacote:** `@modelcontextprotocol/server-postgres`
+
+**Status:** Desabilitado por padrão
+
+**Variáveis de ambiente:**
+```bash
+export DATABASE_URL="postgresql://user:pass@host:5432/db"
+```
+
+**Configuração:**
+```json
+"postgres": {
+  "type": "local",
+  "command": ["npx", "-y", "@modelcontextprotocol/server-postgres"],
+  "enabled": true,
+  "environment": {
+    "DATABASE_URL": "${DATABASE_URL}"
+  }
+}
+```
+
+**Recursos:**
+- Consultas SQL
+- Listar tabelas
+- Ver schema do banco
+
+---
+
+### 9. Context7 MCP Server
+
+**Pacote:** `@upstash/context7-mcp`
+
+**Status:** Ativo
+
+**Configuração:**
+```json
+"context7": {
+  "type": "local",
+  "command": ["npx", "-y", "@upstash/context7-mcp"],
+  "enabled": true,
+  "environment": {
+    "CONTEXT7_API_KEY": "SUA_CHAVE_API"
+  }
+}
+```
+
+**Recursos:**
+- Documentação atualizada de bibliotecas
+- Busca em docs de frameworks
+- Referência de APIs
 
 ---
 
