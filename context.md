@@ -1,5 +1,15 @@
 # Dotfiles Project - Context Document
 
+## ⚠️ DIRECTRIZES IMPORTANTES
+
+### Regra de Git
+
+**NUNCA execute comandos git (commit, push, pull, rebase, etc.) sem minha ordem explícita!**
+
+Sempre pergunte antes de executar qualquer comando git e espere minha confirmação.
+
+---
+
 ## Visão Geral
 
 Repositório de dotfiles pessoais focado em produtividade para desenvolvimento.
