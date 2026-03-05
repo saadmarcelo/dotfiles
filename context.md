@@ -344,12 +344,14 @@ O OpenCode suporta MCP (Model Context Protocol) servers para integração com fe
       "type": "local",
       "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
       "enabled": true,
+      "timeout": 120000,
       "environment": {}
     },
     "ansible": {
       "type": "local",
       "command": ["uvx", "ansible-mcp-server"],
       "enabled": true,
+      "timeout": 120000,
       "environment": {}
     },
     "github": {
