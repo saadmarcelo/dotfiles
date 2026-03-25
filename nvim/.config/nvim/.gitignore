@@ -1,0 +1,18 @@
+
+# ============================================
+# SECRETS - NUNCA COMMITAR!
+# ============================================
+lua/secrets.lua
+secrets.lua
+
+# Mas manter o example
+!secrets.lua.example
+!lua/secrets.lua.example
+
+# OpenCode sessions
+.opencode/
+**/opencode/sessions/
+
+# Logs
+*.log
+logs/

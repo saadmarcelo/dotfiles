@@ -9,3 +9,122 @@ nvim/.config/nvim/lua/secrets.lua
 *.tfvars
 .terraform/
 .terraform.lock.hcl
+
+
+# .gitignore para ~/.config/nvim/
+
+# ============================================
+# SECRETS E API KEYS
+# ============================================
+# CRÍTICO: Nunca commitar chaves de API!
+lua/secrets.lua
+secrets.lua
+
+# ============================================
+# LAZY.NVIM
+# ============================================
+lazy-lock.json
+plugin/
+
+# ============================================
+# SESSÕES E CACHE
+# ============================================
+# Auto-sessions
+session/
+sessions/
+
+# OpenCode sessions
+.opencode/
+**/opencode/sessions/
+
+# ============================================
+# LOGS
+# ============================================
+*.log
+logs/
+*.log.*
+
+# ============================================
+# NEOVIM ESPECÍFICO
+# ============================================
+# Undo history
+undodir/
+.undodir/
+
+# Swap files
+*.swp
+*.swo
+*.swn
+*~
+
+# Backup files
+*.bak
+*.backup
+
+# Netrw history
+.netrwhist
+
+# Spell files
+*.spl
+*.sug
+
+# ============================================
+# SISTEMA OPERACIONAL
+# ============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ============================================
+# TEMPORÁRIOS
+# ============================================
+tmp/
+temp/
+*.tmp
+
+# ============================================
+# NODE / NPM (se usar CoC ou similar)
+# ============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================
+# PYTHON (se usar Python LSP localmente)
+# ============================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# ============================================
+# OUTROS
+# ============================================
+# Telescope cache
+telescope.nvim/
+
+# LSP logs
+lsp.log
+
+# Mason (package manager)
+# Comentado se você quiser versionar os LSPs instalados
+# mason/
+
+# ============================================
+# ARQUIVO DE EXEMPLO
+# ============================================
+# O arquivo secrets.lua.example DEVE ser commitado!
+# Ele serve como template para outros desenvolvedores
+!secrets.lua.example

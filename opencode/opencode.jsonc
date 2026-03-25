@@ -1,0 +1,77 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    // AWS MCP Server - Gerencia recursos AWS
+    "aws": {
+      "type": "local",
+      "command": ["npx", "-y", "@imazhar101/mcp-aws-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    // Kubernetes MCP Server - Gerencia clusters K8s
+    "kubernetes": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-server-kubernetes"],
+      "enabled": true,
+      "environment": {}
+    },
+    // Docker MCP Server - via Docker Desktop MCP Toolkit
+    "docker": {
+      "type": "local",
+      "command": ["docker", "mcp", "gateway", "run"],
+      "enabled": true,
+      "timeout": 60000,
+      "environment": {}
+    },
+    // Terraform Registry MCP - Consulta providers e módulos
+    "terraform-registry": {
+      "type": "local",
+      "command": ["npx", "-y", "terraform-mcp-server"],
+      "enabled": true,
+      "environment": {}
+    },
+    // AWS IaC MCP - CDK e CloudFormation (requer uv)
+    "aws-iac": {
+      "type": "local",
+      "command": ["uvx", "awslabs.cdk-mcp-server@latest"],
+      "enabled": true,
+      "timeout": 120000,
+      "environment": {}
+    },
+    // Ansible MCP - Gerencia Ansible
+    "ansible": {
+      "type": "local",
+      "command": ["uvx", "ansible-mcp-server"],
+      "enabled": true,
+      "timeout": 120000,
+      "environment": {}
+    },
+    // GitHub MCP - Repositórios, PRs, issues
+    "github": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-github"],
+      "enabled": true,
+      "environment": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    // PostgreSQL MCP - Consulta databases (desabilitado)
+    "postgres": {
+      "type": "local",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-postgres"],
+      "enabled": false,
+      "environment": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      }
+    },
+    // Context7 MCP - Documentação atualizada de bibliotecas
+    "context7": {
+      "type": "local",
+      "command": ["npx", "-y", "@upstash/context7-mcp"],
+      "enabled": true,
+      "environment": {
+        "CONTEXT7_API_KEY": "ctx7sk-7cb515f7-addc-48aa-97c4-3977121f8ac8"
+      }
+    }
+  }
+}
