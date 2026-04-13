@@ -4,6 +4,19 @@
 
 ## Session Log
 
+### 2026-04-13 - Session 3
+
+**Mistakes:**
+- 
+
+**Corrections:**
+- User asked to configure the `caveman` skill and explain how to use it in OpenCode
+
+**Learnings:**
+- OpenCode local skills live in `~/.config/opencode/skills/<skill>/SKILL.md`
+- Global always-on behavior for OpenCode is controlled by `~/.config/opencode/AGENTS.md`
+- `caveman` works well in OpenCode by combining a local `caveman` skill with an always-on section in `AGENTS.md`
+
 ### 2026-04-06 - Session 2
 
 **Mistakes:**
