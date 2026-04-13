@@ -11,11 +11,15 @@
 
 **Corrections:**
 - User asked to configure the `caveman` skill and explain how to use it in OpenCode
+- User asked to update dotfiles for newer `tree-sitter` and `telescope` APIs using current docs
 
 **Learnings:**
 - OpenCode local skills live in `~/.config/opencode/skills/<skill>/SKILL.md`
 - Global always-on behavior for OpenCode is controlled by `~/.config/opencode/AGENTS.md`
 - `caveman` works well in OpenCode by combining a local `caveman` skill with an always-on section in `AGENTS.md`
+- `nvim-ts-autotag` setup through `nvim-treesitter.configs` is deprecated; configure it with `require("nvim-ts-autotag").setup()` or plugin `opts`
+- `telescope.setup()` must keep `defaults`, `pickers`, and `extensions` as top-level keys
+- Current `telescope.nvim` master/v0.2 requires Neovim 0.11+; local machine is on `0.12.1`
 
 ### 2026-04-06 - Session 2
 

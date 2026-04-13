@@ -1,6 +1,5 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -12,6 +11,16 @@ return {
 		local actions = require("telescope.actions")
 
 		telescope.setup({
+			defaults = {
+				path_display = { "smart" },
+				mappings = {
+					i = {
+						["<C-k>"] = actions.move_selection_previous,
+						["<C-j>"] = actions.move_selection_next,
+						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+					},
+				},
+			},
 			pickers = {
 				find_files = {
 					file_ignore_patterns = { ".git", ".venv" },
@@ -24,26 +33,11 @@ return {
 						return { "--hidden" }
 					end,
 				},
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown(),
-					},
-				},
-				defaults = {
-					path_display = { "smart" },
-					mappings = {
-						i = {
-							["<C-k>"] = actions.move_selection_previous, -- move to prev result
-							["<C-j>"] = actions.move_selection_next, -- move to next result
-							["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-						},
-					},
-				},
 			},
 		})
 
-		telescope.load_extension("fzf")
-		telescope.load_extension("noice")
+		pcall(telescope.load_extension, "fzf")
+		pcall(telescope.load_extension, "noice")
 		-- set keymaps
 		local keymap = vim.keymap -- for conciseness
 
