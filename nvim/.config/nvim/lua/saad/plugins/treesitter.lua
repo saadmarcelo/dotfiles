@@ -57,7 +57,7 @@ return {
 				"vimdoc",
 				"c",
 				"tmux",
-				"htmldjango", -- Para highlighting de Django/Jinja2
+				"htmldjango",
 			},
 			auto_install = true,
 			sync_install = false,
