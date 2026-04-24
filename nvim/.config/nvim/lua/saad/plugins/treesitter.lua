@@ -57,7 +57,6 @@ return {
 				"vimdoc",
 				"c",
 				"tmux",
-				"htmldjango",
 			},
 			auto_install = true,
 			sync_install = false,
