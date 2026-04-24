@@ -11,27 +11,38 @@ return {
 		local actions = require("telescope.actions")
 
 		telescope.setup({
-			defaults = {
-				path_display = { "smart" },
-				mappings = {
-					i = {
-						["<C-k>"] = actions.move_selection_previous,
-						["<C-j>"] = actions.move_selection_next,
-						["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
-					},
+defaults = {
+			layout_strategy = "horizontal",
+			layout_config = {
+				horizontal = {
+					preview_width = 0.4,
+					results_width = 0.6,
+					width = 0.98,
+					height = 0.98,
+				},
+			},
+			mappings = {
+				i = {
+					["<C-k>"] = actions.move_selection_previous,
+					["<C-j>"] = actions.move_selection_next,
+					["<C-q>"] = function(prompt_bufnr)
+						actions.send_selected_to_qflist(prompt_bufnr)
+						actions.open_qflist()
+					end,
 				},
 			},
 			pickers = {
-				find_files = {
-					file_ignore_patterns = { ".git", ".venv" },
-					hidden = true,
-					no_ignore = true,
-				},
-				live_grep = {
-					file_ignore_patterns = { ".git", ".venv" },
-					additional_args = function(_)
-						return { "--hidden" }
-					end,
+					find_files = {
+						file_ignore_patterns = { ".git", ".venv" },
+						hidden = true,
+						no_ignore = true,
+					},
+					live_grep = {
+						file_ignore_patterns = { ".git", ".venv" },
+						additional_args = function(_)
+							return { "--hidden" }
+						end,
+					},
 				},
 			},
 		})

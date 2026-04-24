@@ -14,6 +14,7 @@ return {
 			fg = "#c3ccdc",
 			bg = "#112638",
 			inactive_bg = "#2c3043",
+			semilightgray = "#8b89a6",
 		}
 
 		local my_lualine_theme = {
@@ -52,7 +53,7 @@ return {
 		-- configure lualine with modified theme
 		lualine.setup({
 			options = {
-				theme = "catppuccin",
+				theme = "catppuccin-nvim",
 			},
 			sections = {
 				lualine_x = {
