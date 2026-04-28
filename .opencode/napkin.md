@@ -1,64 +1,47 @@
-# Napkin - dotfiles
+# Napkin Runbook
 
-> Persistent memory of mistakes, corrections, and learnings
+## Curation Rules
+- Re-prioritize on every read.
+- Keep recurring, high-value notes only.
+- Max 10 items per category.
+- Each item includes date + "Do instead".
 
-## Session Log
+## Execution & Validation (Highest Priority)
+1. **[2026-04-27] Verify Neovim config loads without errors**
+   Do instead: run `nvim --headless -c 'qa!'` to check for Lua init errors.
 
-### 2026-04-13 - Session 3
+## Shell & Command Reliability
+1. **[2026-04-27] `zshrc` changes require sourcing or new shell**
+   Do instead: run `source zshrc/.zshrc` or open fresh terminal.
 
-**Mistakes:**
-- 
+## Domain Behavior Guardrails
+1. **[2026-04-27] lazy.nvim plugins lazy-load by default**
+   Do instead: do not assume plugins are loaded at startup; trigger via keymap or command.
 
-**Corrections:**
-- User asked to configure the `caveman` skill and explain how to use it in OpenCode
-- User asked to update dotfiles for newer `tree-sitter` and `telescope` APIs using current docs
+## User Directives
+1. **[2026-04-27] User prefers terse responses without summaries**
+   Do instead: output only what was done and what's next, no trailing summaries.
+2. **[2026-04-28] AI tool used for all queries = Claude CLI**
+   Do instead: always reference Claude CLI behavior, not OpenCode.
 
-**Learnings:**
-- OpenCode local skills live in `~/.config/opencode/skills/<skill>/SKILL.md`
-- Global always-on behavior for OpenCode is controlled by `~/.config/opencode/AGENTS.md`
-- `caveman` works well in OpenCode by combining a local `caveman` skill with an always-on section in `AGENTS.md`
-- `nvim-ts-autotag` setup through `nvim-treesitter.configs` is deprecated; configure it with `require("nvim-ts-autotag").setup()` or plugin `opts`
-- `telescope.setup()` must keep `defaults`, `pickers`, and `extensions` as top-level keys
-- Current `telescope.nvim` master/v0.2 requires Neovim 0.11+; local machine is on `0.12.1`
+## OpenCode Integration
+1. **[2026-04-13] OpenCode local skills live in `~/.config/opencode/skills/<skill>/SKILL.md`**
+   Do instead: place local skill definitions there.
+2. **[2026-04-13] Global always-on behavior for OpenCode controlled by `~/.config/opencode/AGENTS.md`**
+   Do instead: edit AGENTS.md to make skills auto-load every session.
+3. **[2026-04-13] `caveman` skill works in OpenCode via local skill + always-on section in AGENTS.md**
+   Do instead: combine both for persistent caveman mode.
 
-### 2026-04-06 - Session 2
+## Neovim / Treesitter / Telescope
+1. **[2026-04-13] `nvim-ts-autotag` setup through `nvim-treesitter.configs` is deprecated**
+   Do instead: configure with `require("nvim-ts-autotag").setup()` or plugin `opts`.
+2. **[2026-04-13] `telescope.setup()` must keep `defaults`, `pickers`, `extensions` as top-level keys**
+   Do instead: do not nest them inside another table.
+3. **[2026-04-13] `telescope.nvim` master/v0.2 requires Neovim 0.11+**
+   Do instead: local machine runs 0.12.1 — safe, but master may break on older Neovim.
 
-**Mistakes:**
-- 
-
-**Corrections:**
-- User wants `cartographer` to be auto-loaded globally in all projects, not only available on demand
-
-**Learnings:**
-- Global auto-loaded skills are controlled by `~/.config/opencode/AGENTS.md`
-- `~/.config/opencode/opencode.json` controls permission to use skills, not whether they auto-load every session
-
-### 2026-03-11 - Session 1
-
-**Mistakes:**
-- Initial setup
-
-**Corrections:**
-- 
-
-**Learnings:**
-- This is the dotfiles repository with Neovim, tmux, Zsh, and OpenCode configurations
-- OpenCode skill system configured with napkin for persistent memory
-
-## Patterns
-
-### Recurring Issues
-- 
-
-### Solutions That Work
-- 
-
-## Preferences
-
-### User Preferences
-- Uses lazy.nvim for Neovim plugin management
-- Modular configuration structure
-
-### Environment Notes
-- macOS (darwin) platform
-- Neovim with Lua configuration
+## User Preferences
+- Uses lazy.nvim for Neovim plugin management.
+- Modular configuration structure.
+- macOS (darwin) platform.
+- Neovim with Lua configuration.
