@@ -37,6 +37,20 @@ alias vi=v
 alias batcat=bat
 alias k=kubectl
 
+# Claude Code
+alias cc="claude"
+
+# Load local secrets (not tracked by git)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+
+# Claude cli
+alias cc-mini='ANTHROPIC_BASE_URL="https://api.minimax.io/anthropic" \
+  ANTHROPIC_AUTH_TOKEN="$ANTHROPIC_AUTH_TOKEN" \
+  ANTHROPIC_DEFAULT_OPUS_MODEL="MiniMax-M2.7" \
+  claude --model opus'
+
+
 # History Search
 autoload -Uz history-search-end
 zle -N history-beginning-search-backward-end history-search-end
