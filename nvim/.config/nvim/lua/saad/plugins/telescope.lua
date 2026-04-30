@@ -11,46 +11,39 @@ return {
 		local actions = require("telescope.actions")
 
 		telescope.setup({
-defaults = {
-			layout_strategy = "horizontal",
-			layout_config = {
-				horizontal = {
-					preview_width = 0.4,
-					results_width = 0.6,
-					width = 0.98,
-					height = 0.98,
+			defaults = {
+				layout_strategy = "horizontal",
+				layout_config = {
+					horizontal = {
+						preview_width = 0.4,
+						results_width = 0.6,
+						width = 0.98,
+						height = 0.98,
+					},
 				},
-			},
-			mappings = {
-				i = {
-					["<C-k>"] = actions.move_selection_previous,
-					["<C-j>"] = actions.move_selection_next,
-					["<C-q>"] = function(prompt_bufnr)
-						actions.send_selected_to_qflist(prompt_bufnr)
-						actions.open_qflist()
-					end,
+				mappings = {
+					i = {
+						["<C-k>"] = actions.move_selection_previous,
+						["<C-j>"] = actions.move_selection_next,
+						["<C-q>"] = function(prompt_bufnr)
+							actions.send_selected_to_qflist(prompt_bufnr)
+							actions.open_qflist()
+						end,
+					},
 				},
 			},
 			pickers = {
-					find_files = {
-						file_ignore_patterns = { ".git", ".venv" },
-						hidden = true,
-						no_ignore = true,
-					},
-					live_grep = {
-						file_ignore_patterns = { ".git", ".venv" },
-						additional_args = function(_)
-							return { "--hidden" }
-						end,
-					},
+				find_files = {
+					hidden = true,
+					no_ignore = true,
+					file_ignore_patterns = { "^.git/", "^.venv/", "^node_modules/", "^.opencode/node_modules/" },
 				},
 			},
 		})
 
 		pcall(telescope.load_extension, "fzf")
 		pcall(telescope.load_extension, "noice")
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
+		local keymap = vim.keymap
 
 		keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
 		keymap.set("n", "<leader>fr", "<cmd>Telescope registers<cr>", { desc = "Fuzzy find registers" })
