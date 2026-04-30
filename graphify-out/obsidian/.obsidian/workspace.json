@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "cdaf4fdc3e7eb139",
+    "type": "split",
+    "children": [
+      {
+        "id": "914e74e0d109f69a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "75d740170b7da016",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Visualização em gráfico"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ab6d00a4af56a777",
+    "type": "split",
+    "children": [
+      {
+        "id": "99daf3058a1896d2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d21c93b850655a9f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Explorador de arquivos"
+            }
+          },
+          {
+            "id": "ed2533dacc15c9d6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Procurar"
+            }
+          },
+          {
+            "id": "ddcd81458db94d5c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Marcadores"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "14f89619ed2ec5a3",
+    "type": "split",
+    "children": [
+      {
+        "id": "3edcbc68e3da6e09",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b0013d0ad21a874f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Sem título 2.canvas",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Links inversos para Sem título 2"
+            }
+          },
+          {
+            "id": "d72d66f947325085",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Sem título 2.canvas",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Links de saída para Sem título 2"
+            }
+          },
+          {
+            "id": "f2a5376216279272",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etiquetas"
+            }
+          },
+          {
+            "id": "7d6d2b33e3f2bb53",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Todas as propriedades"
+            }
+          },
+          {
+            "id": "14ea2cd3694505cd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Sem título 2.canvas",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Sumário de Sem título 2"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Abrir a troca rápida": false,
+      "graph:Abrir visualização em gráfico": false,
+      "canvas:Criar novo canvas": false,
+      "daily-notes:Abrir a nota de hoje": false,
+      "templates:Inserir modelo": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Criar nova base": false,
+      "obsidian42-brat:BRAT": false
+    }
+  },
+  "active": "75d740170b7da016",
+  "lastOpenFiles": [
+    "Sem título.md",
+    "graph.canvas",
+    "tmux-sessionx.md",
+    "Sem título.base",
+    "Sem título.canvas",
+    "Sem título 1.canvas",
+    "Sem título 2.canvas",
+    "Sem título 3.canvas",
+    "Sem título 4.canvas",
+    "2026-04-29.md",
+    "Graph Report.md",
+    "Context7 MCP Server.md",
+    "Codebase Overview.md",
+    "Codebase Map.md",
+    "Catppuccin Theme.md",
+    "Ansible MCP Server.md",
+    "Docker MCP Server.md",
+    "graphify Knowledge Graph.md",
+    "Keybinding conflict leaderrn.md",
+    "Kubernetes MCP Server.md",
+    "lazy.nvim.md"
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "communities": {
+    "0": [
+      "context_ansible_mcp",
+      "context_aws_iac_mcp",
+      "context_aws_mcp",
+      "context_context7_mcp",
+      "context_docker_mcp",
+      "context_github_mcp",
+      "context_kubernetes_mcp",
+      "context_mcp_servers",
+      "context_postgres_mcp",
+      "context_terraform_registry_mcp",
+      "servidormcp_mcp_server_configuration_guide"
+    ],
+    "1": [
+      "context_lazy_nvim",
+      "context_nvim_init",
+      "context_nvim_plugins",
+      "context_saad_core",
+      "context_saad_plugins",
+      "context_saad_plugins_lsp",
+      "napkin_keybinding_conflict_leader_rn"
+    ],
+    "2": [
+      "context_avante_nvim",
+      "context_context_md",
+      "context_opencode_nvim",
+      "context_secrets_lua",
+      "context_secrets_lua_example",
+      "gitwarning_git_command_restriction_policy"
+    ],
+    "3": [
+      "claude_codebase_overview",
+      "claude_graph_report",
+      "claude_graphify_knowledge_graph",
+      "codebase_map_codebase_map",
+      "readme_gnu_stow"
+    ],
+    "4": [
+      "context_fzf",
+      "context_tmux_sessionx",
+      "sessionx_fixed_sh"
+    ],
+    "5": [
+      "context_opencode_cli",
+      "context_opencode_jsonc"
+    ],
+    "6": [
+      "context_catppuccin_theme",
+      "napkin_theme_background_mismatch"
+    ],
+    "7": [
+      "context_nvim_tree_lua"
+    ],
+    "8": [
+      "context_telescope_lua"
+    ],
+    "9": [
+      "context_lsp_mason"
+    ],
+    "10": [
+      "context_lsp_lspconfig"
+    ]
+  },
+  "cohesion": {
+    "0": 0.18,
+    "1": 0.33,
+    "2": 0.4,
+    "3": 0.4,
+    "4": 0.67,
+    "5": 1.0,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0
+  },
+  "gods": [
+    {
+      "id": "context_mcp_servers",
+      "label": "MCP Servers",
+      "degree": 13
+    },
+    {
+      "id": "context_context_md",
+      "label": "Dotfiles Project Context",
+      "degree": 5
+    },
+    {
+      "id": "context_opencode_nvim",
+      "label": "OpenCode.nvim",
+      "degree": 5
+    },
+    {
+      "id": "context_lazy_nvim",
+      "label": "lazy.nvim",
+      "degree": 5
+    },
+    {
+      "id": "context_secrets_lua",
+      "label": "secrets.lua",
+      "degree": 3
+    },
+    {
+      "id": "context_opencode_cli",
+      "label": "opencode CLI",
+      "degree": 3
+    },
+    {
+      "id": "context_nvim_plugins",
+      "label": "Neovim Plugins",
+      "degree": 2
+    },
+    {
+      "id": "context_tmux_sessionx",
+      "label": "tmux-sessionx",
+      "degree": 2
+    },
+    {
+      "id": "context_opencode_jsonc",
+      "label": "opencode.jsonc MCP config",
+      "degree": 2
+    },
+    {
+      "id": "context_saad_plugins",
+      "label": "saad.plugins module",
+      "degree": 2
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Git Command Restriction Policy",
+      "target": "Dotfiles Project Context",
+      "source_files": [
+        "GIT_WARNING.md",
+        "context.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "rationale_for",
+      "why": "connects across different repos/directories; peripheral node `Git Command Restriction Policy` unexpectedly reaches hub `Dotfiles Project Context`"
+    },
+    {
+      "source": "MCP Server Configuration Guide",
+      "target": "MCP Servers",
+      "source_files": [
+        "servidormcp.md",
+        "context.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "documents",
+      "why": "connects across different repos/directories; peripheral node `MCP Server Configuration Guide` unexpectedly reaches hub `MCP Servers`"
+    },
+    {
+      "source": "GNU Stow",
+      "target": "Codebase Map",
+      "source_files": [
+        "README.md",
+        "docs/CODEBASE_MAP.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "conceptually_related_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "Keybinding conflict <leader>rn",
+      "target": "Neovim Plugins",
+      "source_files": [
+        ".claude/napkin.md",
+        "context.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "affects",
+      "why": "connects across different repos/directories"
+    },
+    {
+      "source": "Theme background mismatch",
+      "target": "Catppuccin Theme",
+      "source_files": [
+        ".claude/napkin.md",
+        "context.md"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "affects",
+      "why": "connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `MCP Servers` connect `Community 0` to `Community 2`, `Community 5`?",
+      "why": "High betweenness centrality (0.272) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `OpenCode.nvim` connect `Community 2` to `Community 0`, `Community 5`?",
+      "why": "High betweenness centrality (0.225) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Dotfiles Project Context` connect `Community 2` to `Community 1`?",
+      "why": "High betweenness centrality (0.196) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Avante.nvim (disabled)`, `secrets.lua.example`, `AWS MCP Server` to the rest of the system?",
+      "why": "23 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

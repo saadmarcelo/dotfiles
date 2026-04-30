@@ -32,6 +32,10 @@
 3. **[2026-04-13] `caveman` skill works in OpenCode via local skill + always-on section in AGENTS.md**
    Do instead: combine both for persistent caveman mode.
 
+## Tmux
+1. **[2026-04-28] `O` no Neovim disparava sessionx (tmux interceptava)**
+   Do instead: `unbind -n O` no tmux.conf DESPOIS do `run '~/.tmux/plugins/tpm/tpm'` — plugin sessionx cria binding root `-n O` na linha 176 de sessionx.tmux que captura O global.
+
 ## Neovim / Treesitter / Telescope
 1. **[2026-04-13] `nvim-ts-autotag` setup through `nvim-treesitter.configs` is deprecated**
    Do instead: configure with `require("nvim-ts-autotag").setup()` or plugin `opts`.
