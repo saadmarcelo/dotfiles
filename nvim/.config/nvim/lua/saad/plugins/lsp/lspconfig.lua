@@ -64,7 +64,7 @@ return {
 				-- Ansible LSP
 				vim.lsp.config.ansiblels = {
 					cmd = { "ansible-language-server", "--stdio" },
-					filetypes = { "yaml.ansible" },
+					filetypes = { "ansible", "yaml.ansible" },
 					root_markers = { ".ansible-lint", "ansible.cfg", ".git" },
 					capabilities = capabilities,
 					on_attach = on_attach,

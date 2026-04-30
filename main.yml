@@ -1,0 +1,89 @@
+---
+# Create supabase folder
+- name: Create supabase folder
+  ansible.builtin.file:
+    dest: /home/{{ HOST_USER }}/supabase
+    state: directory
+    mode: "0755"
+    group: "{{ HOST_USER }}"
+    owner: "{{ HOST_USER }}"
+
+# Copy and descompact docker.tar
+- name: Copy and descompact docker.tar to supabase folder
+  ansible.builtin.unarchive:
+    src: docker.tar
+    dest: /home/{{ HOST_USER }}/supabase/
+
+# Change supabase folder permition
+- name: Change supabase folder permition
+  ansible.builtin.file:
+    dest: /home/{{ HOST_USER }}/supabase
+    state: directory
+    mode: "0755"
+    group: "{{ HOST_USER }}"
+    owner: "{{ HOST_USER }}"
+    recurse: true
+
+# Copy .env.j2 template (creates .env that generate-keys.sh will update)
+- name: Copy .env template to docker folder
+  ansible.builtin.template:
+    src: files/.env.j2
+    dest: /home/{{ HOST_USER }}/supabase/docker/.env
+    mode: "0644"
+    group: "{{ HOST_USER }}"
+    owner: "{{ HOST_USER }}"
+
+# Make generate-keys.sh executable
+- name: Make generate-keys.sh executable
+  ansible.builtin.file:
+    path: /home/{{ HOST_USER }}/supabase/docker/utils/generate-keys.sh
+    mode: "0755"
+
+# Run generate-keys.sh with --update-env to write secrets directly to .env
+- name: Run generate-keys.sh to generate secrets
+  ansible.builtin.shell: |
+    cd /home/{{ HOST_USER }}/supabase/docker && sh utils/generate-keys.sh --update-env
+  register: generate_keys_output
+  changed_when: false
+
+# Display generated secrets in ansible output
+- name: Display generated secrets
+  ansible.builtin.debug:
+    msg:
+      - "=========================================="
+      - "GENERATED SECRETS (save these!)"
+      - "=========================================="
+      - "{{ generate_keys_output.stdout }}"
+      - "=========================================="
+
+# Replace DASHBOARD_PASSWORD with vault value
+- name: Set DASHBOARD_PASSWORD from vault
+  ansible.builtin.lineinfile:
+    path: /home/{{ HOST_USER }}/supabase/docker/.env
+    regexp: '^DASHBOARD_PASSWORD=.*'
+    line: "DASHBOARD_PASSWORD={{ DASHBOARD_PASSWORD }}"
+    state: present
+
+# Pull supabase docker images
+- name: Pull images for supabase
+  community.docker.docker_compose_v2_pull:
+    project_src: /home/{{ HOST_USER }}/supabase/docker/
+    files:
+      - docker-compose.yml
+      - docker-compose.s3.yml
+      - docker-compose.nginx.yml
+
+# Create and start docker compose
+- name: Create and start services
+  community.docker.docker_compose_v2:
+    project_src: /home/{{ HOST_USER }}/supabase/docker/
+    files:
+      - docker-compose.yml
+      - docker-compose.s3.yml
+      - docker-compose.nginx.yml
+  register: compose_output
+
+# Print container results
+- name: Show docker compose results
+  ansible.builtin.debug:
+    var: compose_output
