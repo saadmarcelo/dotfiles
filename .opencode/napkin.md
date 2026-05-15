@@ -1,11 +1,37 @@
-# Napkin
+# Napkin - dotfiles
 
-## Mistakes
+> Persistent memory of mistakes, corrections, and learnings
 
-## Corrections
+## Session Log
 
-- Confirmed `postgresql@14` was installed and running even though no app databases existed. Stopped service first, verified no listener-dependent usage, then replaced with `postgresql@18`.
+### 2026-05-15 - Session 1
 
-## Learnings
+**Mistakes:**
+- 
 
-- For Homebrew DB deprecation checks, verify three things before uninstall: `brew services list`, actual listener on `5432`, and local databases via `psql`.
+**Corrections:**
+- 
+
+**Learnings:**
+- Repo pede ler knowledge graph antes de leitura bruta para perguntas de arquitetura.
+- Repo prefere `graphify-out/wiki/index.md` quando existir; aqui nao existe, entao usar `GRAPH_REPORT.md` e docs existentes.
+- Escopo canonico resolvido: repo e `Personal Dev Environment`, nao `dotfiles puro` nem `ops monorepo`.
+- Regra de inclusao resolvida: so entra no repo o que participa do workflow diario local; `opencode.sh` e `main.yml` ficaram fora da fronteira canonica.
+- Taxonomia resolvida: repo organiza em `Interactive Config`, `Developer Tooling`, `Documentation`.
+- Centro do design resolvido: ambiente e `Neovim-centric`.
+
+## Patterns
+
+### Recurring Issues
+- 
+
+### Solutions That Work
+- Comecar por `GRAPH_REPORT.md`, `docs/CODEBASE_MAP.md`, depois cruzar com arquivos vivos.
+
+## Preferences
+
+### User Preferences
+- Usuario quer entrevista rigorosa, uma pergunta por vez, com recomendacao por pergunta.
+
+### Environment Notes
+- Workspace: `/Users/marcelosaad/dotfiles`.
