@@ -6,6 +6,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="fino"
 plugins=(
 	git
+  aws
 	# zsh-syntax-highlighting
   # zsh-autosuggestions
 )
@@ -36,6 +37,7 @@ alias v=vim
 alias vi=v
 alias batcat=bat
 alias k=kubectl
+alias awsp="source _awsp"
 
 # Claude Code
 alias cc="claude"
@@ -120,3 +122,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 if [ "$TERM" = "xterm-kitty" ]; then
     alias ssh="kitty +kitten ssh"
 fi
+SHOW_AWS_PROMPT=true
