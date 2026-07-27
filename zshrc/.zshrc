@@ -31,13 +31,30 @@ setopt hist_ignore_dups
 setopt hist_verify
 
 
+# Alias para trocar de perfil e checar a validade
+awsp_status() {
+  source _awsp
+  if [ -n "$AWS_PROFILE" ]; then
+    # Testa se as credenciais ainda funcionam sem fazer chamadas de rede lentas
+    if aws sts get-caller-identity --profile "$AWS_PROFILE" &> /dev/null; then
+      echo -e "\033[0;32m   AWS SSO Sessão Ativa! ($AWS_PROFILE)\033[0m"
+    else
+      echo -e "\033[0;31m  Sessão EXPIRADA/INVÁLIDA para $AWS_PROFILE! Rode: aws sso login\033[0m"
+    fi
+  fi
+}
+
+# Sobrescreve o alias do awsp para usar a checagem
+alias awsp="awsp_status"
+
+
+
 ##### Alias
 alias vim=nvim
 alias v=vim 
 alias vi=v
 alias batcat=bat
 alias k=kubectl
-alias awsp="source _awsp"
 
 # Claude Code
 alias cc="claude"
