@@ -14,3 +14,9 @@
 
 - Checking both repo-local and global OpenCode configs before changing anything.
 - Using `opencode run --print-logs` to capture the exact provider error.
+- Comparing Alacritty and Kitty font family names before changing terminal config.
+
+## Session Notes
+
+- Alacritty failed because `SauceCodePro Nerd Font` was configured, but the installed variants on this macOS setup are `SauceCodePro Nerd Font Mono`.
+- Follow-up: macOS did not register the `SauceCodePro Nerd Font Mono` files as a usable family for Alacritty; `Hack Nerd Font Mono` is registered correctly and works as fallback.
