@@ -54,9 +54,11 @@ Press prefix + I (capital i, as in Install) to fetch the plugin.
 Este dotfiles inclui uma versão corrigida do plugin `tmux-sessionx` que funciona corretamente com múltiplas sessões.
 
 **Dependência obrigatória:**
+
 - `fzf` - precisa estar instalado para o plugin funcionar
 
 **Instalação do plugin (para ter o preview):**
+
 ```bash
 git clone https://github.com/omerxx/tmux-sessionx.git ~/.tmux/plugins/tmux-sessionx
 ```
@@ -64,6 +66,7 @@ git clone https://github.com/omerxx/tmux-sessionx.git ~/.tmux/plugins/tmux-sessi
 **Atalho:** `Ctrl+b O` - Abre seletor de sessões com preview
 
 **Funcionalidades:**
+
 - Lista todas as sessões (incluindo a atual)
 - Preview em tempo real do conteúdo da sessão
 - Criação de novas sessões

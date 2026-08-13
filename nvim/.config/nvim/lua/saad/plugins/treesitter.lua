@@ -1,6 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = { "BufReadPre", "BufNewFile" },
+	enabled = false,
+	lazy = false,
 	build = ":TSUpdate",
 	dependencies = {
 		{
@@ -24,7 +25,7 @@ return {
 				enable = true,
 				-- Remover jinja2 daqui - não existe parser jinja2 no treesitter
 				additional_vim_regex_highlighting = { "terraform" },
-				disable = { "tmux" },
+				disable = { "markdown", "markdown_inline", "tmux" },
 			},
 			-- enable indentation
 			indent = { enable = true },
