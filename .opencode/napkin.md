@@ -24,7 +24,13 @@
 - When `vim.treesitter` errors only on Markdown in Neovim 0.12.x, disable Treesitter highlighting for `markdown`/`markdown_inline` first; parser may be fine while queries/highlighter are not.
 - If the stack mentions Treesitter markdown but the trigger is UI text like `msg_show` or completion docs, inspect `noice.nvim` and other markdown render overrides before blaming file buffers.
 - Confirmed by test: with `nvim-treesitter` fully disabled, Neovim opens Markdown without the `Decoration provider "start"` / `range()` crash on Neovim `0.12.4`.
+- Migrated repo config toward the new `nvim-treesitter` `main` API for Neovim `0.12.x`: explicit `branch = "main"`, manual filetype attach, and no old `configs.setup` modules.
+- New blocker discovered during migration: parser installation now requires the `tree-sitter` CLI binary in `PATH`; without it, plugin loads but cannot compile/install most parsers.
+- Resolved blocker: Homebrew `tree-sitter` formula now ships only the library; the missing executable came from not having `tree-sitter-cli` installed. Installing `tree-sitter-cli` restored parser installation.
 
 ## Corrections
 
 - Root cause is not Markdown content itself; it is the installed `nvim-treesitter` line being incompatible with Neovim `0.12.4`.
+- `noice.nvim` was disabled only as an isolation step; re-enable it after confirming Treesitter is the actual source so UI mappings/escape behavior keep working.
+- Safe intermediate state: keep Treesitter enabled for non-Markdown filetypes and explicitly stop it for `markdown` until parser/tooling setup is complete.
+- Current stable state: `nvim-treesitter` main branch works on Neovim `0.12.4`, parsers install successfully with `tree-sitter-cli`, and Markdown remains intentionally excluded from Treesitter attach to avoid the known crash path.

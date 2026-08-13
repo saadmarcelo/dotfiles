@@ -1,8 +1,42 @@
+local languages = {
+	"bash",
+	"c",
+	"css",
+	"dockerfile",
+	"gitignore",
+	"graphql",
+	"hcl",
+	"helm",
+	"html",
+	"javascript",
+	"json",
+	"lua",
+	"prisma",
+	"python",
+	"query",
+	"regex",
+	"svelte",
+	"terraform",
+	"toml",
+	"tsx",
+	"typescript",
+	"vim",
+	"vimdoc",
+	"yaml",
+}
+
+local disabled_filetypes = {
+	markdown = true,
+	tmux = true,
+}
+
 return {
 	"nvim-treesitter/nvim-treesitter",
-	enabled = false,
+	branch = "main",
 	lazy = false,
-	build = ":TSUpdate",
+	build = function()
+		require("nvim-treesitter").install(languages, { summary = true }):wait(300000)
+	end,
 	dependencies = {
 		{
 			"windwp/nvim-ts-autotag",
@@ -16,62 +50,25 @@ return {
 		},
 	},
 	config = function()
-		-- import nvim-treesitter plugin
-		local treesitter = require("nvim-treesitter.configs")
+		local group = vim.api.nvim_create_augroup("SaadTreesitter", { clear = true })
 
-		-- configure treesitter
-		treesitter.setup({ -- enable syntax highlighting
-			highlight = {
-				enable = true,
-				-- Remover jinja2 daqui - não existe parser jinja2 no treesitter
-				additional_vim_regex_highlighting = { "terraform" },
-				disable = { "markdown", "markdown_inline", "tmux" },
-			},
-			-- enable indentation
-			indent = { enable = true },
-			-- ensure these language parsers are installed
-			ensure_installed = {
-				"json",
-				"javascript",
-				"typescript",
-				"tsx",
-				"yaml",
-				"html",
-				"css",
-				"prisma",
-				"markdown",
-				"markdown_inline",
-				"svelte",
-				"graphql",
-				"hcl",
-				"helm",
-				"toml",
-				"regex",
-				"bash",
-				"lua",
-				"python",
-				"vim",
-				"dockerfile",
-				"gitignore",
-				"query",
-				"terraform",
-				"vimdoc",
-				"c",
-				"tmux",
-			},
-			auto_install = true,
-			sync_install = false,
-			ignore_install = {},
-			modules = {},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
-					scope_incremental = false,
-					node_decremental = "<bs>",
-				},
-			},
+		vim.api.nvim_create_autocmd("FileType", {
+			group = group,
+			pattern = "*",
+			callback = function(args)
+				local filetype = vim.bo[args.buf].filetype
+
+				if vim.bo[args.buf].buftype ~= "" then
+					return
+				end
+
+				if disabled_filetypes[filetype] then
+					pcall(vim.treesitter.stop, args.buf)
+					return
+				end
+
+				pcall(vim.treesitter.start, args.buf)
+			end,
 		})
 	end,
 }
