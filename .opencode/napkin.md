@@ -34,3 +34,4 @@
 - `noice.nvim` was disabled only as an isolation step; re-enable it after confirming Treesitter is the actual source so UI mappings/escape behavior keep working.
 - Safe intermediate state: keep Treesitter enabled for non-Markdown filetypes and explicitly stop it for `markdown` until parser/tooling setup is complete.
 - Current stable state: `nvim-treesitter` main branch works on Neovim `0.12.4`, parsers install successfully with `tree-sitter-cli`, and Markdown remains intentionally excluded from Treesitter attach to avoid the known crash path.
+- `lazy.nvim` warning about `/Users/marcelosaad/.local/share/nvim/site/pack/core` was just an empty stale directory. Safe to remove when `lazy` is the only plugin manager in use.
