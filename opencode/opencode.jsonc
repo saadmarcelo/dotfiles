@@ -1,5 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "minimax/MiniMax-M2.7",
+  "small_model": "minimax/MiniMax-M2.7-highspeed",
+  "provider": {
+    "minimax": {
+      "options": {
+        "baseURL": "https://api.minimax.io/anthropic/v1"
+      }
+    }
+  },
   "mcp": {
     // AWS MCP Server - Gerencia recursos AWS
     "aws": {
