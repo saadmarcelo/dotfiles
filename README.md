@@ -2,6 +2,8 @@
 
 arquivos de config
 
+aldenira
+ 
 instalar o app stow
 
 ## linux
